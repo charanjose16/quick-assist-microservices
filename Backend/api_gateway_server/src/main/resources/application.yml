@@ -1,0 +1,36 @@
+spring:
+  cloud:
+    gateway:
+        routes:
+          - id: admin-service
+            uri:
+              lb://admin-service
+            predicates:
+              - Path=/admin/**
+
+          - id: user-service
+            uri:
+              lb://user-service
+            predicates:
+              - Path=/users/**
+
+
+          - id: worker-service
+            uri:
+              lb://worker-service
+            predicates:
+              - Path=/workers/**
+
+
+          - id: booking-service
+            uri:
+              lb://booking-service
+            predicates:
+              - Path=/booking/**
+#
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      prefer-ip-address: true

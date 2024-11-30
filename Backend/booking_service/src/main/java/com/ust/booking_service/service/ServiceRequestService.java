@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ServiceRequestService {
@@ -21,11 +22,13 @@ public class ServiceRequestService {
     }
 
     public List<ServiceRequest> getAllServiceRequestByUserId(int id){
-        return serviceRequestRepository.findAllByUserId(id);
+        List<ServiceRequest> serviceList= serviceRequestRepository.findAll().stream().filter(s->s.getUserId()==id).collect(Collectors.toList());
+        return serviceList;
     }
 
     public List<ServiceRequest> getAllServiceRequestByWorkerId(int id){
-        return serviceRequestRepository.findAllByWorkerId(id);
+        List<ServiceRequest> serviceList= serviceRequestRepository.findAll().stream().filter(s->s.getWorkerId()==id).collect(Collectors.toList());
+        return serviceList;
     }
 
     public ServiceRequest updateServiceRequestStatus(int id,ServiceRequest serviceRequest,ServiceStatus serviceStatus){

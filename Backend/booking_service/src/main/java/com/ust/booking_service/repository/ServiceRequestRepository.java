@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ServiceRequestRepository extends JpaRepository<ServiceRequest,Integer> {
 
-    public List<ServiceRequest> findAllByWorkerId(int id);
-    public List<ServiceRequest> findAllByUserId(int id);
+//    public List<ServiceRequest> findAllByWorkerId(int id);
+//    public List<ServiceRequest> findAllByUserId(int id);
 
 }

@@ -9,10 +9,9 @@
     color: white;
     flex-direction: column;
     text-align: center;
-    filter: brightness(70%);
+    /* filter: brightness(90%); */
   }
   
-
   .hero-text h1 {
     font-size: 3em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);

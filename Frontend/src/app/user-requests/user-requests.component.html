@@ -1,12 +1,13 @@
 <div class="main-div">
     <app-user-header></app-user-header>
     <div class="container mt-5">
+      <h2 class="text-center text-white mb-4">Your Requests</h2>
       <div class="row">
         <!-- Loop through an array of requests -->
         <div class="col-md-4 each-req-div" *ngFor="let request of requests">
           <div class="card shadow-sm">
             <div class="card-body">
-              <h5 class="card-title">Service Name:<span class="ser-name-span"> {{ request.serviceName }}</span></h5>
+              <h5 class="card-title">Service Name:<span class="text-warning"> {{ request.serviceName }}</span></h5>
               <p class="card-text">Worker Name: {{ request.workerName }}</p>
               <p class="card-text">Request Status: 
                 <span class="badge" [ngClass]="{'bg-primary': request.status === 'Requested', 'bg-success': request.status === 'Accepted'}">

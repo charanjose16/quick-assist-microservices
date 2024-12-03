@@ -1,0 +1,41 @@
+<div class="main-div">
+    <app-worker-header></app-worker-header>
+    <div class="container mt-5">
+      <h2 class="text-center text-white mb-4">Customer Requests</h2>
+      <div class="row">
+        <!-- Loop through an array of customer requests -->
+        <div class="col-md-4 each-req-div" *ngFor="let request of requests" >
+          <div class="card shadow-sm">
+            <div class="card-body" style="height: 220px;">
+              <h5 class="card-title">Customer Name: <span class="text-warning">{{ request.customerName }}</span></h5>
+              <p class="card-text"><strong>Service Required:</strong> {{ request.serviceName }}</p>
+              <p class="card-text"><strong>Address:</strong> {{ request.address }}</p>
+              <p class="card-text">
+                <strong>Request Status: </strong> 
+                <span class="badge" 
+                  [ngClass]="{'bg-warning': request.status === 'Pending', 
+                              'bg-success': request.status === 'Accepted',
+                              'bg-danger': request.status === 'Rejected'}">
+                  {{ request.status }}
+                </span>
+              </p>
+  
+              <!-- Action Buttons -->
+              <div *ngIf="request.status === 'Pending'" class="d-flex justify-content-between mt-3">
+                <button 
+                  class="btn btn-outline-success btn-sm" 
+                  (click)="acceptRequest(request)">Accept</button>
+                <button 
+                  class="btn btn-outline-danger btn-sm" 
+                  (click)="rejectRequest(request)">Reject</button>
+              </div>
+              <p *ngIf="request.status !== 'Pending'" class="mt-3 text-center">
+                <em>Action already taken: {{ request.status }}</em>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

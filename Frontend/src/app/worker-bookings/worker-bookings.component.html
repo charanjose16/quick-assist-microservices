@@ -1,0 +1,26 @@
+
+<div class="main-div">
+    <app-worker-header></app-worker-header>
+    <div class="container mt-5">
+      <h2 class="text-center text-white mb-4">Your Bookings</h2>
+      <div class="row">
+        <!-- Loop through worker's bookings -->
+        <div class="col-md-4 each-req-div" *ngFor="let booking of bookings">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Service Name: <span class="text-warning"> {{ booking.serviceName }}</span></h5>
+              <p class="card-text">Customer Name: <span class="ser-name-span"> {{ booking.customerName }}</span></p>
+              <p class="card-text">Booked Date & Time: <span class="ser-name-span"> {{ booking.bookingDate | date: 'yyyy-MM-dd HH:mm a' }}</span></p>
+              <p class="card-text">Booking Status:
+                <span class="badge" [ngClass]="{'bg-success': booking.status === 'Completed', 
+                                                'bg-primary': booking.status === 'Ongoing'}">
+                   {{ booking.status }}
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

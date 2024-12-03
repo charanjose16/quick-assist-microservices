@@ -19,22 +19,49 @@
     filter: brightness(50%) ;  /* Adjust brightness and blur */
     z-index: -1;  /* Ensure it stays behind the content */
 }
-.card-body {
-    background-color: rgba(7, 7, 7, 0.897); 
-    color: white;/* Light gray color, adjust as needed */
-    border-radius: 5px;
-    transition: transform 0.2s;
-  }
-  /* .card {
+  
+  .card {
     border-radius: 10px;
     background-color: #f8f9fa;
     color: #333;
-    transition: transform 0.2s;
     color: white;
-  } */
+  }
+  .card-body{
+    transition: transform 0.2s;
+  }
+  
   .card-body:hover {
     transform: scale(1.02);
     box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829); /* Add a shadow effect */
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .badge {
+    font-size: 0.9rem;
+  }
+  
+  .btn-sm {
+    padding: 5px 10px;
+  }
+  
+  h2 {
+    
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 20px;
+    }
+  }
+
+  .card-body {
+    background-color: rgba(7, 7, 7, 0.897); 
+    color: white;/* Light gray color, adjust as needed */
+    border-radius: 5px;
   }
   .each-req-div{
       margin-top: 30px;
@@ -45,6 +72,4 @@
     border-width: 2px;
     
 }
-.ser-name-span{
-    color: darkgoldenrod;
-}
+  

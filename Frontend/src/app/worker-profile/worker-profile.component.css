@@ -19,32 +19,32 @@
     filter: brightness(50%) ;  /* Adjust brightness and blur */
     z-index: -1;  /* Ensure it stays behind the content */
 }
-.card-body {
-    background-color: rgba(7, 7, 7, 0.897); 
-    color: white;/* Light gray color, adjust as needed */
+
+
+.profile-container {
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 5px;
-    transition: transform 0.2s;
-  }
-  /* .card {
-    border-radius: 10px;
-    background-color: #f8f9fa;
-    color: #333;
-    transition: transform 0.2s;
+    background-color: rgba(7, 7, 7, 0.897); 
     color: white;
-  } */
-  .card-body:hover {
-    transform: scale(1.02);
-    box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829); /* Add a shadow effect */
-  }
-  .each-req-div{
-      margin-top: 30px;
-  }
-  .shadow-sm{
-    border-color: rgba(255, 255, 255, 0.315);
-    background-color: rgba(7, 7, 7, 0.897);
     border-width: 2px;
+    border-color: rgba(138, 136, 136, 0.541);
+  }
+  /* .card-body {
     
-}
-.ser-name-span{
-    color: darkgoldenrod;
-}
+    border-radius: 5px;
+  } */
+  
+  .profile-img img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .profile-img input[type="file"] {
+    display: block;
+    margin: auto;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }

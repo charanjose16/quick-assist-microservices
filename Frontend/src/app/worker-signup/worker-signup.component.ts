@@ -16,6 +16,7 @@ export class WorkerSignupComponent {
     phone: '',
     email: '',
     city: '',
+    price: 0,
     expertise: '',
     specialities: [''] // Starting with one input for specialities
   };

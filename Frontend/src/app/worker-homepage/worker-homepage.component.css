@@ -1,0 +1,83 @@
+.main-div {
+    background: url('images/bg1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 0px; /* Margin to account for fixed navbar */
+    color: white;
+    flex-direction: column;
+    text-align: center;
+    /* filter: brightness(90%); */
+  }
+  
+  .hero-text h1 {
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-text p {
+    font-size: 1.5em;
+    margin-top: 10px;
+  }
+
+  .hero-text .btn {
+    margin-top: 20px;
+  }
+  
+  
+  /* Dashboard Cards */
+  .stat-card {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.4); /* Add a shadow effect */
+  }
+  
+  .stat-card h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00d1b2;
+  }
+  
+  /* Table Styling */
+  .upcoming-bookings table {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .upcoming-bookings thead th {
+    background-color: #444;
+  }
+  
+  .upcoming-bookings tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .upcoming-bookings tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .stat-card {
+      margin-bottom: 20px;
+    }
+  
+    .stat-card h5 {
+      font-size: 1rem;
+    }
+  
+    .stat-value {
+      font-size: 1.5rem;
+    }
+  }
+  

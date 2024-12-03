@@ -1,0 +1,101 @@
+<div class="main-div">
+    <app-worker-header></app-worker-header>
+    <div class="container mt-5">
+      <div class="profile-container card shadow-lg p-4">
+        <div class="row">
+          <!-- Profile Image Section -->
+          <div class="col-md-4 text-center">
+            <div class="profile-img">
+              <img
+                [src]="worker.profilePic || 'https://via.placeholder.com/150'"
+                alt="Worker Profile Picture"
+                class="rounded-circle img-fluid"
+              />
+              <input type="file" accept="image/*" (change)="onFileSelected($event)" class="mt-3" />
+            </div>
+          </div>
+  
+          <!-- Profile Details Section -->
+          <div class="col-md-8">
+            <form (ngSubmit)="updateProfile()">
+              <!-- Name -->
+              <div class="mb-3">
+                <label for="name" class="form-label text-warning">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control"
+                  [(ngModel)]="worker.name"
+                  name="name"
+                />
+              </div>
+  
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label text-warning">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-control"
+                  [(ngModel)]="worker.email"
+                  name="email"
+                />
+              </div>
+  
+              <!-- Phone -->
+              <div class="mb-3">
+                <label for="phone" class="form-label text-warning">Phone Number</label>
+                <input
+                  type="text"
+                  id="phone"
+                  class="form-control"
+                  [(ngModel)]="worker.phone"
+                  name="phone"
+                />
+              </div>
+  
+              <!-- City -->
+              <div class="mb-3">
+                <label for="city" class="form-label text-warning">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  class="form-control"
+                  [(ngModel)]="worker.city"
+                  name="city"
+                />
+              </div>
+  
+              <!-- Expertise -->
+              <div class="mb-3">
+                <label for="expertise" class="form-label text-warning">Expertise</label>
+                <input
+                  type="text"
+                  id="expertise"
+                  class="form-control"
+                  [(ngModel)]="worker.expertise"
+                  name="expertise"
+                />
+              </div>
+  
+              <!-- Specialties -->
+              <div class="mb-3">
+                <label for="specialties" class="form-label text-warning">Specialties</label>
+                <textarea
+                  id="specialties"
+                  class="form-control"
+                  [(ngModel)]="worker.specialties"
+                  name="specialties"
+                  rows="3"
+                ></textarea>
+              </div>
+  
+              <!-- Update Button -->
+              <button type="submit" class="btn btn-warning w-100">Update Profile</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

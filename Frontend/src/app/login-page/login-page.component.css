@@ -1,0 +1,52 @@
+.main-div{
+    background: url('images/bg1.jpg') no-repeat center center fixed;  
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 1, 1, 0.801); 
+    z-index: -1; 
+}
+
+.form-container {
+    z-index: 1;
+    height: 280px;
+    width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(250, 250, 250, 0.198);
+
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+label{
+    color: rgb(255, 196, 0);
+}
+input::placeholder{
+    color: rgba(0, 0, 0, 0.596);
+}
+button{
+    background-color: rgb(255, 196, 0);
+    border-color: rgb(255, 196, 0);
+    color: black;
+}
+button:hover{
+    background-color: black;
+    color: white;
+    border-color:black;
+}
+/* <a href="https://www.vecteezy.com/photo/22555555-3d-abstract-red-and-black-background-by-ai-generated-can-be-use-as-facebook-cover">3D Abstract Red and Black Background by can be use as facebook cover Stock photos by Vecteezy</a> */

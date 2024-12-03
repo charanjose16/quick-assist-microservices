@@ -1,0 +1,29 @@
+.main-div {
+    background: url('images/bg1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 0px; /* Margin to account for fixed navbar */
+    color: white;
+    flex-direction: column;
+    text-align: center;
+    filter: brightness(70%);
+  }
+  
+
+  .hero-text h1 {
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-text p {
+    font-size: 1.5em;
+    margin-top: 10px;
+  }
+
+  .hero-text .btn {
+    margin-top: 20px;
+  }
+  

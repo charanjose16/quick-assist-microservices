@@ -1,0 +1,47 @@
+/* Custom navbar */
+.navbar-custom {
+    background-color:rgba(253, 253, 253, 0.589);
+    position: fixed;
+    width: 100%;
+    z-index: 1000; /* Ensure navbar is above other content */
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+  }
+
+/* Initial state: no underline */
+.navbar-custom .navbar-nav .nav-link {
+    position: relative;
+    margin-left: 30px;
+    font-weight: 500;
+    color: black;
+    text-decoration: none;  /* Remove default underline */
+  }
+  
+  /* Hover state: add underline with smooth transition */
+  .navbar-custom .navbar-nav .nav-link:hover {
+    text-decoration: none;  /* No default underline */
+  }
+  
+  .navbar-custom .navbar-nav .nav-link:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;  /* Thickness of the underline */
+    background-color: black;  /* Color of the underline */
+    bottom: 0;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  
+  /* On hover, the underline expands */
+  .navbar-custom .navbar-nav .nav-link:hover:after {
+    width: 100%;
+    left: 0;
+  }
+  .navbar-brand{
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+  }
+  

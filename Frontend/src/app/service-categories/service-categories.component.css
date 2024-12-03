@@ -1,0 +1,49 @@
+.main-div{
+    /* background: url('images/black-bg2.jpg') no-repeat center center fixed;   */
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.main-div::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('images/black-bg2.jpg') no-repeat center center fixed;  /* Background image for blur effect */
+    background-size: cover;
+    filter: brightness(50%) ;  /* Adjust brightness and blur */
+    z-index: -1;  /* Ensure it stays behind the content */
+}
+.card-body img {
+    width: 80px; /* Adjust image size */
+    height: 80px; /* Adjust image size */
+    object-fit: cover;
+    border-radius: 8px; /* Rounded corners */
+  }
+  .card-body {
+    background-color: rgba(7, 7, 7, 0.897); 
+    color: white;/* Light gray color, adjust as needed */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+  }
+  
+  .card-body:hover {
+    transform: scale(1.05); /* Slightly enlarge the card body */
+    box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829); /* Add a shadow effect */
+  }
+
+  .each-req-div{
+      width: 330px;
+      margin: 30px;
+  }
+  .shadow-sm{
+      border-color: rgba(255, 255, 255, 0.315);
+      background-color: rgba(7, 7, 7, 0.897);
+      border-width: 2px;
+  }
+  

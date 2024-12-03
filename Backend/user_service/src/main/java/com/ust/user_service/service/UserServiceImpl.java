@@ -3,6 +3,7 @@ package com.ust.user_service.service;
 import com.ust.user_service.model.UserModel;
 import com.ust.user_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +15,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
 
-    public UserModel createUser(UserModel userModel) {
-        return userRepository.save(userModel);
+
+    public UserModel createUser(UserModel user) {
+        return userRepository.save(user);
     }
 
     public UserModel findUserById(int id) {

@@ -24,6 +24,4 @@ public class WorkerModel {
     private String city;
     private String expertise;
     private List<String> specialities;
-
-
 }

@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class AuthenticationService {
 
@@ -29,12 +31,15 @@ public class AuthenticationService {
     @Autowired
     JwtUtil jwtUtil;
 
-    public JwtToken authenticate(UserCredentials userCredentials) {
+    public Map<String, Object> authenticate(UserCredentials userCredentials) {
         try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userCredentials.username(), userCredentials.password()));
             String username = authentication.getName();
-            return new JwtToken(jwtUtil.generateToken(username));
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            return Map.of("token", new JwtToken(jwtUtil.generateToken(username)),
+                    "userName", userDetails.getUsername());
+//            return new JwtToken(jwtUtil.generateToken(username));
 
 
         } catch (AuthenticationException e) {

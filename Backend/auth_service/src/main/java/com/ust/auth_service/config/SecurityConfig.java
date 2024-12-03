@@ -46,6 +46,7 @@ public class SecurityConfig {
                 authRegistry ->
                         authRegistry
                                 .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/admin/**").permitAll()
                                 .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN", "WORKER")
                                 .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->

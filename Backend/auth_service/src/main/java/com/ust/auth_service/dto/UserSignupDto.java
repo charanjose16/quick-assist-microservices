@@ -2,6 +2,8 @@ package com.ust.auth_service.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UserSignupDto {
 
@@ -13,4 +15,7 @@ public class UserSignupDto {
     private String phoneNumber;
     private String email;
     private String address;
+    private String city;
+    private String expertise;
+    private List<String> specialities;
 }

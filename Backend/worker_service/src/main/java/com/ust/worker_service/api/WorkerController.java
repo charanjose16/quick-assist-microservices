@@ -15,8 +15,8 @@ public class WorkerController {
     @Autowired
     private WorkerServiceImpl workerService;
 
-    @PostMapping
-    public WorkerModel createWorker(WorkerModel workerModel){
+    @PostMapping("createW")
+    public WorkerModel createWorker(@RequestBody  WorkerModel workerModel){
         return workerService.createWorker(workerModel);
     }
 

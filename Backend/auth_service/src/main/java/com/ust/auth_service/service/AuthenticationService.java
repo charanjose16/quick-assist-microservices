@@ -36,6 +36,7 @@ public class AuthenticationService {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userCredentials.username(), userCredentials.password()));
             String username = authentication.getName();
+//            String role = authentication.getRole();
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             return Map.of("token", new JwtToken(jwtUtil.generateToken(username)),
                     "userName", userDetails.getUsername());

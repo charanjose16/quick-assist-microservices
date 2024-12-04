@@ -18,6 +18,7 @@ public class AdminModel {
     private String name;
     private String username;
     private String password;
+    private String role;
     private String phoneNumber;
     private String email;
 

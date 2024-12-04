@@ -1,30 +1,21 @@
-package com.ust.user_service.model;
+package com.ust.auth_service.dto;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserModel {
+public class WorkerSignupDto {
 
-    @Id
     private int id;
     private String name;
     private String username;
     private String password;
-    private String role;
     private String phoneNumber;
+    private String role;
     private String email;
-    private String address;
     private String city;
     private String expertise;
     private List<String> specialities;
-
 }

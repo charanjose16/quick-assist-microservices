@@ -9,6 +9,7 @@ import java.util.List;
 
 @FeignClient(name = "WORKER-SERVICE")
 public interface WorkerClient {
+
     @GetMapping("/workers/all")
     List<WorkerModel> getAllWorkerModule();
 }

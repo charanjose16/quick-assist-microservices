@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserHeaderComponent } from '../user-header/user-header.component';
 
 @Component({
@@ -11,4 +11,9 @@ import { UserHeaderComponent } from '../user-header/user-header.component';
 })
 export class ServiceCategoriesComponent {
 
+  constructor (private router:Router){}
+
+  navigateToWorkerList(profession: string): void {
+    this.router.navigate(['/worker-list', profession]);
+  }
 }

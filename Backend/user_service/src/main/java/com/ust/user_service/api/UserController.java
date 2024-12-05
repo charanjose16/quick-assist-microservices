@@ -35,13 +35,23 @@ public class UserController {
         return userService.updateUser(id,user);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id){
         userService.deleteUser(id);
     }
 
-    @GetMapping("/hello")
-    public String hello(){
-        return "Hello Ji. Sb shi hai !!";
+//    @GetMapping("/hello")
+//    public String hello(){
+//        return "Hello Ji. Sb shi hai !!";
+//    }
+
+    @GetMapping("/getByUsername/{username}")
+    public UserModel getByUsername(@PathVariable String username) {
+        return userService.findUserByUsername(username);
+    }
+
+    @GetMapping("/allWorkers/{expertise}")
+    public List<UserModel> getAllWorkersByExpertise(@PathVariable String expertise){
+        return userService.getAllWorkers(expertise);
     }
 }

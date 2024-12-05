@@ -1,61 +1,71 @@
 <div class="main-div">
-    <app-user-header></app-user-header>
-    <div class="main">
-        <div class="container mt-5">
-          <div class="row">
-            <!-- Card 1 -->
-            <div class="col-md-4 each-req-div" routerLink="/worker-list">
-              <div class="card shadow-sm">
-                <div class="card-body d-flex align-items-center">
-                  <!-- Left: Image -->
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwUUzwckiawjFZ4QQm8k_abg8c_DYJxxOgHi5VCRvECrPAElBiIvsLlYfoDhxGs_jgOp4&usqp=CAU" alt="Plumbing">
-                  <!-- Right: Title -->
-                  <div class="ms-3">
-                    <h5 class="card-title">Plumbing</h5>
-                  </div>
+  <app-user-header></app-user-header>
+  <div class="main">
+      <div class="container mt-5">
+        <div class="row">
+          <!-- Card 1 -->
+          <div class="col-md-4 each-req-div" (click)="navigateToWorkerList('Plumber')">
+            <div class="card shadow-sm">
+              <div class="card-body d-flex align-items-center">
+                <!-- Left: Image -->
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwUUzwckiawjFZ4QQm8k_abg8c_DYJxxOgHi5VCRvECrPAElBiIvsLlYfoDhxGs_jgOp4&usqp=CAU" alt="Plumbing">
+                <!-- Right: Title -->
+                <div class="ms-3">
+                  <h5 class="card-title">Plumber</h5>
                 </div>
               </div>
             </div>
-            <!-- Card 2 -->
-            <div class="col-md-4 each-req-div" routerLink="/worker-list">
-              <div class="card shadow-sm">
-                <div class="card-body d-flex align-items-center">
-                  <!-- Left: Image -->
-                  <img src="https://img.freepik.com/free-vector/hand-drawn-electrician-cartoon-illustration_23-2151047384.jpg" alt="Electrical">
-                  <!-- Right: Title -->
-                  <div class="ms-3">
-                    <h5 class="card-title">Electrical</h5>
-                  </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="col-md-4 each-req-div" (click)="navigateToWorkerList('Electrician')">
+            <div class="card shadow-sm">
+              <div class="card-body d-flex align-items-center">
+                <!-- Left: Image -->
+                <img src="https://img.freepik.com/free-vector/hand-drawn-electrician-cartoon-illustration_23-2151047384.jpg" alt="Electrical">
+                <!-- Right: Title -->
+                <div class="ms-3">
+                  <h5 class="card-title">Electrician</h5>
                 </div>
               </div>
             </div>
-            <!-- Card 3 -->
-            <div class="col-md-4 each-req-div" routerLink="/worker-list">
+          </div>
+          <!-- Card 3 -->
+          <div class="col-md-4 each-req-div" (click)="navigateToWorkerList('Carpenter')">
+            <div class="card shadow-sm">
+              <div class="card-body d-flex align-items-center">
+                <!-- Left: Image -->
+                <img src="https://static.vecteezy.com/system/resources/previews/022/749/722/non_2x/builder-sawing-planks-carpenter-repairman-building-work-services-illustration-vector.jpg" alt="Carpentry">
+                <!-- Right: Title -->
+                <div class="ms-3">
+                  <h5 class="card-title">Carpenter</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add similar structure for other cards -->
+          <div class="col-md-4 each-req-div" (click)="navigateToWorkerList('Mechanic')">
               <div class="card shadow-sm">
                 <div class="card-body d-flex align-items-center">
-                  <!-- Left: Image -->
-                  <img src="https://static.vecteezy.com/system/resources/previews/022/749/722/non_2x/builder-sawing-planks-carpenter-repairman-building-work-services-illustration-vector.jpg" alt="Carpentry">
-                  <!-- Right: Title -->
+                  <img src="https://www.shutterstock.com/image-vector/smiling-cartoon-car-mechanic-running-600nw-1651028692.jpg" alt="Mechanic">
                   <div class="ms-3">
-                    <h5 class="card-title">Carpentry</h5>
+                    <h5 class="card-title">Mechanic</h5>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div class="col-md-4 each-req-div" routerLink="/worker-list">
-                <div class="card shadow-sm">
-                  <div class="card-body d-flex align-items-center">
-                    <!-- Left: Image -->
-                    <img src="https://www.shutterstock.com/image-vector/smiling-cartoon-car-mechanic-running-600nw-1651028692.jpg" alt="Carpentry">
-                    <!-- Right: Title -->
-                    <div class="ms-3">
-                      <h5 class="card-title">Mechanic</h5>
-                    </div>
+            <div class="col-md-4 each-req-div" (click)="navigateToWorkerList('Painter')">
+              <div class="card shadow-sm">
+                <div class="card-body d-flex align-items-center">
+                  <img src="https://www.shutterstock.com/image-vector/smiling-cartoon-car-mechanic-running-600nw-1651028692.jpg" alt="Painter">
+                  <div class="ms-3">
+                    <h5 class="card-title">Painter</h5>
                   </div>
                 </div>
               </div>
-          </div>
+            </div>
         </div>
       </div>
+    </div>
 </div>

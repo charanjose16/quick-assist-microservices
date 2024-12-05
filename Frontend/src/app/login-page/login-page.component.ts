@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginResponse } from '../model/loginResponse'; // Make sure this file exists and contains the correct interface
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../service/authService/auth.service';
 
 @Component({
   selector: 'app-login-page',

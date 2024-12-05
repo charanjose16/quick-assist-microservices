@@ -7,6 +7,7 @@ export interface User {
     phoneNumber: string,
     address: string,
     city: string,
+    price:number,
     experties: string,
     specialties: string[]
 }

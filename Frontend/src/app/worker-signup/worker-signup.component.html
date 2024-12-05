@@ -21,15 +21,18 @@
       </div>
       
 
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="exampleInputRole">Role</label>
-        <input 
-            type="text" 
+        <select 
             class="form-control" 
             id="exampleInputRole" 
-            placeholder="Enter your role" 
-            formControlName="role">
-    </div>
+            formControlName="role" 
+            required>
+            <option value="" disabled>Select a role</option>
+            <option value="USER">USER</option>
+            <option value="WORKER">WORKER</option>
+        </select>
+    </div> -->
 
       <!-- Phone Input -->
       <div class="form-group">
@@ -64,7 +67,16 @@
       <!-- Expertise Input -->
       <div class="form-group">
         <label for="expertise">Expertise</label>
-        <input type="text" class="form-control" id="expertise" formControlName="expertise" placeholder="Enter your expertise">
+        <!-- <input type="text" class="form-control" id="expertise" formControlName="expertise" placeholder="Enter your expertise"> -->
+        <select class="form-control" id="expertise" formControlName="expertise">
+          <option value="">Select your expertise</option>
+          <option value="Plumber">Plumber</option>
+          <option value="Carpenter">Carpenter</option>
+          <option value="Mechanic">Mechanic</option>
+          <option value="Electrician">Electrician</option>
+          <option value="Painter">Painter</option>
+          <option value="Welder">Welder</option>
+        </select>
       </div>
 
       <!-- Specialities -->
@@ -82,7 +94,7 @@
       </div>
 
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" [disabled]="!workerSignup.valid">Signup</button>
+      <button type="submit" class="btn btn-primary" >Signup</button>
     </form>
   </div>
 </div>

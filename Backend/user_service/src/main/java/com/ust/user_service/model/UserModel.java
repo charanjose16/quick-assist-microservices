@@ -20,6 +20,7 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
+//    unique user name to be implemented
     private String username;
     private String password;
     private String role;
@@ -27,6 +28,7 @@ public class UserModel {
     private String email;
     private String address;
     private String city;
+    private Integer price;
     private String expertise;
     private List<String> specialities;
 

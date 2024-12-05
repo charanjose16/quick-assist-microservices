@@ -15,13 +15,16 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
 
-
     public UserModel createUser(UserModel user) {
         return userRepository.save(user);
     }
 
     public UserModel findUserById(int id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    public UserModel findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     public List<UserModel> getAllUserModel() {
@@ -35,5 +38,9 @@ public class UserServiceImpl implements UserService {
 
     public void deleteUser(int id) {
         userRepository.deleteById(id);
+    }
+
+    public List<UserModel> getAllWorkers(String expertise){
+        return userRepository.findAllByRoleAndExpertise("WORKER",expertise);
     }
 }

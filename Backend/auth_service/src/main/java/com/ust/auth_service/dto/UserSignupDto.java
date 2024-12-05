@@ -16,6 +16,7 @@ public class UserSignupDto {
     private String email;
     private String address;
     private String city;
+    private Integer price;
     private String expertise;
     private List<String> specialities;
 }

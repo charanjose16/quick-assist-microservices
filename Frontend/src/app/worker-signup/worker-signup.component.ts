@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../service/authService/auth.service';
 
 @Component({
   selector: 'app-worker-signup',
@@ -11,11 +11,11 @@ import { AuthService } from '../service/auth.service';
   templateUrl: './worker-signup.component.html',
   styleUrl: './worker-signup.component.css'
 })
-export class WorkerSignupComponent {
+export class WorkerSignupComponent implements OnInit {
 
   workerSignup: FormGroup;  // Define the form group
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private route:ActivatedRoute) {
     // Initialize the form group with FormBuilder
     this.workerSignup = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
@@ -26,12 +26,21 @@ export class WorkerSignupComponent {
       email: ['', [Validators.required, Validators.email]],
       address: ['', [Validators.required]],
       city: ['', [Validators.required]],
-      price: ['', [Validators.required, Validators.min(1)]],
+      price: [null, [Validators.required, Validators.min(1)]],
       expertise: ['', [Validators.required]],
       specialities: this.fb.array([this.fb.control('')])  // Specialities as a FormArray
     });
   }
 
+  ngOnInit(): void {
+    // Get the role from query parameters and set it in the form
+    this.route.queryParams.subscribe(params => {
+      if (params['role']) {
+        this.workerSignup.patchValue({ role: params['role'] });
+      }
+    });
+  }
+ 
   get specialities(): FormArray {
     return this.workerSignup.get('specialities') as FormArray;
   }
@@ -52,7 +61,7 @@ export class WorkerSignupComponent {
       const newWorker = this.workerSignup.value;
       this.authService.createUser(newWorker).subscribe((response) => {
         console.log(response);
-        this.router.navigate(['/login']);  // Navigate to worker dashboard (adjust path as needed)
+        this.router.navigate(['/login']); 
       }, (error) => {
         console.error('Error creating worker:', error);
       });

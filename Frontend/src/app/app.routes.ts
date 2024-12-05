@@ -12,8 +12,10 @@ import { WorkerHomepageComponent } from './worker-homepage/worker-homepage.compo
 import { WorkerRequestsComponent } from './worker-requests/worker-requests.component';
 import { WorkerBookingsComponent } from './worker-bookings/worker-bookings.component';
 import { WorkerProfileComponent } from './worker-profile/worker-profile.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 
 export const routes: Routes = [
+{path:"create-account", component:CreateAccountComponent},
 {path:"user-signup",component:UserSignupComponent},
 {path:"login",component:LoginPageComponent},
 {path:"worker-signup",component:WorkerSignupComponent},
@@ -21,7 +23,7 @@ export const routes: Routes = [
 {path:"user-requests",component:UserRequestsComponent},
 {path:"service-cat",component:ServiceCategoriesComponent},
 {path:"user-bookings",component:UserBookingsComponent},
-{path:"worker-list",component:WorkersListComponent},
+{path:"worker-list/:profession",component:WorkersListComponent},
 {path:"worker-details",component:WorkersDetailsComponent},
 {path:"worker-homepage",component:WorkerHomepageComponent},
 {path:"worker-requests",component:WorkerRequestsComponent},

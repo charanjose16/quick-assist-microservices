@@ -1,7 +1,13 @@
 spring:
   cloud:
     gateway:
-        routes:
+      globalcors:
+         cors-configurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedMethods: '*'
+            allowedHeaders: '*'
+      routes:
           - id: admin-service
             uri:
               lb://admin-service

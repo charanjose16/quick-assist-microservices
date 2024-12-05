@@ -1,14 +1,15 @@
-/* Main container for background and layout */
 .main-div {
-    position: relative;
-    min-height: 100vh;
+    /* Full viewport background settings */
+    background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: #000;
-  }
-  
-  .main-div::before {
+    align-items: flex-start; /* Align items to the top but leave space */
+    height: 100vh;
+    margin: 0;
+    padding-top: 100px; /* Add padding to create space between the header and cards */
+}
+
+.main-div::before {
     content: '';
     position: fixed;
     top: 0;
@@ -19,8 +20,8 @@
     background-size: cover;
     filter: brightness(50%);
     z-index: -1;
-  }
-  
+}
+
   /* Profile container layout */
   .profile-container {
     display: flex;

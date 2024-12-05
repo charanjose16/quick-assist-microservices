@@ -1,36 +1,93 @@
 <div class="main-div">
     <div class="overlay"></div>
     <div class="form-container">
-        <form>
+        <form (ngSubmit)="createNewUser(signupForm.value)" [formGroup]="signupForm">
+
             <!-- Name Input -->
             <div class="form-group">
                 <label for="exampleInputName">Name</label>
-                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter your name">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="exampleInputName" 
+                    placeholder="Enter your name" 
+                    formControlName="name" 
+                    required>
+            </div>
+
+            <!-- Username Input -->
+            <div class="form-group">
+                <label for="exampleInputUsername">Username</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="exampleInputUsername" 
+                    placeholder="Enter your username" 
+                    formControlName="username" 
+                    required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+                <label for="exampleInputPassword">Password</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="exampleInputPassword" 
+                    placeholder="Enter your password" 
+                    formControlName="password" 
+                    required>
+            </div>
+
+            <!-- Role Input -->
+            <div class="form-group">
+                <label for="exampleInputRole">Role</label>
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="exampleInputRole" 
+                    placeholder="Enter your role" 
+                    formControlName="role">
             </div>
 
             <!-- Phone Number Input -->
             <div class="form-group">
                 <label for="exampleInputPhone">Phone Number</label>
-                <input type="text" class="form-control" id="exampleInputPhone" placeholder="Enter your phone number">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="exampleInputPhone" 
+                    placeholder="Enter your phone number" 
+                    formControlName="phoneNumber" 
+                    required>
             </div>
 
             <!-- Email Input -->
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <label for="exampleInputEmail">Email address</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="exampleInputEmail" 
+                    placeholder="Enter email" 
+                    formControlName="email" 
+                    required>
             </div>
 
             <!-- Address Input -->
             <div class="form-group">
                 <label for="exampleInputAddress">Address</label>
-                <input type="text" class="form-control" id="exampleInputAddress" placeholder="Enter your address">
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    id="exampleInputAddress" 
+                    placeholder="Enter your address" 
+                    formControlName="address" 
+                    required>
             </div>
 
             <!-- Signup Button -->
-            <button type="submit" class="btn btn-primary">Signup</button>
+            <button type="submit" class="btn btn-primary" >Signup</button>
         </form>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </div>

@@ -1,56 +1,88 @@
 <div class="main-div">
-    <div class="overlay"></div>
-    <div class="form-container">
-      <form (ngSubmit)="onSubmit()" #userForm="ngForm">
-        <!-- Name Input -->
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" [(ngModel)]="formData.name" name="name" placeholder="Enter your name">
-        </div>
-  
-        <!-- Phone Input -->
-        <div class="form-group">
-          <label for="phone">Phone Number</label>
-          <input type="text" class="form-control" id="phone" [(ngModel)]="formData.phone" name="phone" placeholder="Enter your phone number">
-        </div>
-  
-        <!-- Email Input -->
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" id="email" [(ngModel)]="formData.email" name="email" placeholder="Enter your email">
-        </div>
-  
-        <!-- City Input -->
-        <div class="form-group">
-          <label for="city">City</label>
-          <input type="text" class="form-control" id="city" [(ngModel)]="formData.city" name="city" placeholder="Enter your city">
-        </div>
+  <div class="overlay"></div>
+  <div class="form-container">
+    <form [formGroup]="workerSignup" (ngSubmit)="onSubmit()">
+      <!-- Name Input -->
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
+      </div>
 
-        <!-- City Input -->
-        <div class="form-group">
-          <label for="price">Price Per Hour</label>
-          <input type="number" class="form-control" id="price" [(ngModel)]="formData.price" name="price" placeholder="Enter price per hour">
-        </div>
-  
-        <!-- Expertise Input -->
-        <div class="form-group">
-          <label for="expertise">Expertise</label>
-          <input type="text" class="form-control" id="expertise" [(ngModel)]="formData.expertise" name="expertise" placeholder="Enter your expertise">
-        </div>
-  
-        <div class="form-group">
-            <label for="specialities">Specialities</label>
-            <div *ngFor="let speciality of formData.specialities; let i = index" class="speciality-group">
-              <input type="text" class="form-control speciality-input" [(ngModel)]="formData.specialities[i]" name="speciality{{i}}" placeholder="Enter speciality">
-              <button type="button" class="btn btn-danger" (click)="removeSpeciality(i)"><i class="bi bi-trash"></i></button>
-            </div>
-            <button type="button" class="btn btn-success" (click)="addSpeciality()">+</button>
-          </div>
-    
-          <!-- Submit Button -->
-          <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Signup</button>
-                
-      </form>
+      <!-- Username Input -->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter user name">
+      </div>
+
+      <!-- password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter Password">
+      </div>
+      
+
+      <div class="form-group">
+        <label for="exampleInputRole">Role</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="exampleInputRole" 
+            placeholder="Enter your role" 
+            formControlName="role">
     </div>
+
+      <!-- Phone Input -->
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" placeholder="Enter your phone number">
+      </div>
+
+      <!-- Email Input -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+      </div>
+
+      <!-- Address Input -->
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" class="form-control" id="address" formControlName="address" placeholder="Enter your address">
+      </div>
+
+      <!-- City Input -->
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" formControlName="city" placeholder="Enter your city">
+      </div>
+
+      <!-- Price Per Hour Input -->
+      <div class="form-group">
+        <label for="price">Price Per Hour</label>
+        <input type="number" class="form-control" id="price" formControlName="price" placeholder="Enter price per hour">
+      </div>
+
+      <!-- Expertise Input -->
+      <div class="form-group">
+        <label for="expertise">Expertise</label>
+        <input type="text" class="form-control" id="expertise" formControlName="expertise" placeholder="Enter your expertise">
+      </div>
+
+      <!-- Specialities -->
+      <div class="form-group">
+        <label for="specialities">Specialities</label>
+        <div formArrayName="specialities">
+          <div *ngFor="let speciality of specialities.controls; let i = index" class="speciality-group">
+            <input type="text" class="form-control speciality-input" [formControlName]="i" placeholder="Enter speciality">
+            <button type="button" class="btn btn-danger" (click)="removeSpeciality(i)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success" (click)="addSpeciality()">+</button>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary" [disabled]="!workerSignup.valid">Signup</button>
+    </form>
   </div>
-  
+</div>

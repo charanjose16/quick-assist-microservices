@@ -3,6 +3,7 @@ package com.ust.auth_service.service;
 import com.ust.auth_service.dto.JwtToken;
 import com.ust.auth_service.dto.UserCredentials;
 import com.ust.auth_service.util.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class AuthenticationService {
 
@@ -36,10 +39,19 @@ public class AuthenticationService {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userCredentials.username(), userCredentials.password()));
             String username = authentication.getName();
-//            String role = authentication.getRole();
+
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            String role = userDetails.getAuthorities().stream()
+                    .map(authority -> authority.getAuthority()) // Extract role name
+                    .collect(Collectors.joining(", "));
+
+            log.info(userDetails.getUsername()+"username came");
+            log.info(role+" role came");
+
             return Map.of("token", new JwtToken(jwtUtil.generateToken(username)),
-                    "userName", userDetails.getUsername());
+                    "userName", userDetails.getUsername(),
+                    "role",role);
 //            return new JwtToken(jwtUtil.generateToken(username));
 
 

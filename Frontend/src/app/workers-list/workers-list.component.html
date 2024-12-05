@@ -10,7 +10,8 @@
       <div 
         class="worker-card mb-3" 
         *ngFor="let worker of workers" 
-        routerLink="/worker-details/{{ worker }}"
+        routerLink="/worker-details"
+        [queryParams]="{ name: worker.name,phoneNumber:worker.phoneNumber,email:worker.email, expertise: worker.expertise, city: worker.city ,specialities:worker.specialities,price:worker.price}"
       >
         <!-- Worker Image -->
         <div class="worker-image" style="flex: 1; text-align: center;">

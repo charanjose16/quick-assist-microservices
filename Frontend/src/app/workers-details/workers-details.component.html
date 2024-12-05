@@ -11,40 +11,50 @@
 
         <!-- Worker Info -->
         <div class="text-center mb-4">
-          <h3 class="mb-2 text-warning">John Doe</h3>
-          <p><strong>Mobile:</strong> +1 234 567 890</p>
-          <p><strong>Email:</strong> johndoe123.com</p>
+          <h3 class="mb-2 text-warning">{{workerName}}</h3>
+          <p><strong>Mobile:</strong>{{workerPhoneNumber}}</p>
+          <p><strong>Email:</strong>{{workerEmail}}</p>
         </div>
 
         <!-- Expertise, City & Specialties Section -->
-        <div class="expertise-specialties-section mb-4" style="display: flex; ">
+        <div class="expertise-specialties-section mb-4" style="margin-top: 40px;">
           <div class="row">
             <!-- Expertise & City on the left -->
-            <div class="col-md-6">
-              <h4>Expertise & City</h4>
-              <ul class="expertise-list">
-                <li><strong>Expertise:</strong> Plumbing Repairs</li>
-                <li><strong>City:</strong> New York</li>
+            <div class="col-md-6" style="display: flex; flex-direction: column; align-items: center;">
+              <h4 class="text-warning" style="margin-right: 30px;">Expertise & City</h4>
+              <ul class="expertise-list" style="margin-top: 17px;">
+                <li><strong>Expertise : </strong> {{workerExpertise}}</li>
+                <li><strong>City : </strong> {{workerCity}}</li>
               </ul>
             </div>
 
             <!-- Specialties on the right -->
-            <div class="col-md-6" >
-              <h4>Specialties</h4>
-              <ul class="specialties-list">
-                <li>✔ Leak Detection</li>
-                <li>✔ Pipe Installation</li>
-                <li>✔ Drain Cleaning</li>
-              </ul>
+            <div class="col-md-6" style="display: flex; flex-direction: column; align-items: center;">
+                <h4 class="text-warning">Specialties</h4>
+                <!-- Loop over workerSpecialities to display each specialty -->
+                <ul class="specialties-list" style="margin-top: 17px;">
+                  <li *ngFor="let specialty of workerSpecialities">
+                    ✔ {{specialty}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        <!-- Booking Button -->
+        <div class="text-center" style="margin-top: 70px;">
+            <div class="d-flex justify-content-between align-items-center">
+              <!-- Price on the left -->
+              <div class="worker-price" style="flex: 1; text-align: left; margin-left: 40px;">
+                <p>Price: <span>${{workerPrice}}/hour</span></p>
+              </div>
+              <!-- Booking Button on the right -->
+              <div class="worker-booking-button" style="flex: 1; text-align: right; margin-right: 40px;">
+                <button class="btn btn-lg request-btn">Request Booking</button>
+              </div>
             </div>
           </div>
         </div>
-
-        <!-- Booking Button -->
-        <div class="text-center">
-          <button class="btn btn-lg request-btn">Request Booking</button>
-        </div>
-      </div>
 
       <!-- Reviews Section -->
       <div class="reviews-box">

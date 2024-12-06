@@ -31,7 +31,7 @@ public class ServiceRequestService {
         return serviceList;
     }
 
-    public ServiceRequest updateServiceRequestStatus(int id,ServiceRequest serviceRequest,ServiceStatus serviceStatus){
+    public ServiceRequest updateServiceRequestStatus(int id,ServiceStatus serviceStatus){
         ServiceRequest updatedServiceRequest=serviceRequestRepository.findById(id).orElse(null);
         updatedServiceRequest.setServiceStatus(serviceStatus);
         return serviceRequestRepository.save(updatedServiceRequest);

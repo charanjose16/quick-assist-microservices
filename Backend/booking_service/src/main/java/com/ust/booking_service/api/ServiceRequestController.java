@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/serviceRequest")
+
 public class ServiceRequestController {
 
 
@@ -17,7 +18,7 @@ public class ServiceRequestController {
     private ServiceRequestService serviceRequestService;
 
 
-    @PostMapping
+    @PostMapping("/createServiceRequest")
     public ServiceRequest createServiceRequest(@RequestBody ServiceRequest serviceRequest){
         return serviceRequestService.createServiceRequest(serviceRequest);
     }
@@ -33,8 +34,8 @@ public class ServiceRequestController {
     }
 
     @PutMapping("/{serviceRequestId}/{requestStatus}")
-    public ServiceRequest updateServiceRequestStatus(@PathVariable int serviceRequestId, @PathVariable ServiceStatus requestStatus, @RequestBody ServiceRequest serviceRequest){
-        return serviceRequestService.updateServiceRequestStatus(serviceRequestId,serviceRequest,requestStatus);
+    public ServiceRequest updateServiceRequestStatus(@PathVariable int serviceRequestId, @PathVariable ServiceStatus requestStatus){
+        return serviceRequestService.updateServiceRequestStatus(serviceRequestId,requestStatus);
     }
 
 

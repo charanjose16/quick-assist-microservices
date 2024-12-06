@@ -47,8 +47,9 @@ public class SecurityConfig{
                         authRegistry
                                 .requestMatchers("/api/v1/auth/**").permitAll()
                                 .requestMatchers("/admin/**").permitAll()
-                                .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN", "WORKER")
+                                .requestMatchers("/users/**").hasAnyRole("USER")
                                 .requestMatchers("/workers/**").hasRole("WORKER")
+                                .requestMatchers("/serviceRequest/**").hasAnyRole("USER", "WORKER")
                                 .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

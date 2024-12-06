@@ -1,9 +1,9 @@
-<div class="main-div">
+<!-- <div class="main-div">
     <app-user-header></app-user-header>
     <div class="container mt-5">
-      <h2 class="text-center text-white mb-4">Your Requests</h2>
+      <h2 class="text-center text-white mb-4"> Requests</h2>
       <div class="row">
-        <!-- Loop through an array of requests -->
+  
         <div class="col-md-4 each-req-div" *ngFor="let request of requests">
           <div class="card shadow-sm">
             <div class="card-body">
@@ -22,6 +22,34 @@
                 *ngIf="request.status === 'Accepted'" 
                 class="btn btn-outline-success btn-sm" 
                 (click)="payNow(request)">Pay Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+
+
+
+   <div class="main-div">
+    <app-user-header></app-user-header>
+    <div class="container mt-5">
+      <h2 class="text-center text-white mb-4">Your Requests</h2>
+      <div class="row">
+        <!-- Loop through an array of requests -->
+        <div class="col-md-4 each-req-div" *ngFor="let request of requests">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Service Name: <span class="text-warning">{{services[request.workerId] }}</span></h5>
+              <p class="card-text">Worker Name: {{ workers[request.workerId] }}</p>
+              <p class="card-text">Request Status: 
+                <span class="badge" [ngClass]="{'bg-primary': request.serviceStatus === 'Requested', 'bg-success': request.serviceStatus === 'Accepted'}">
+                  {{ request.serviceStatus }}
+                </span>
+              </p>
+              <button *ngIf="request.serviceStatus === 'REQUESTED'" class="btn btn-outline-danger btn-sm" (click)="cancelRequest(request)">Cancel Request</button>
+              <button *ngIf="request.serviceStatus === 'ACCEPTED'" class="btn btn-outline-success btn-sm" (click)="payNow(request)">Pay Now</button>
             </div>
           </div>
         </div>

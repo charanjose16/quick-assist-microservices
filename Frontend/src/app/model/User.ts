@@ -8,6 +8,6 @@ export interface User {
     address: string,
     city: string,
     price:number,
-    experties: string,
+    expertise: string,
     specialties: string[]
 }

@@ -1,5 +1,8 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { BookingRequest } from '../model/BookingRequest';
+import { User } from '../model/User';
+import { BookingRequestService } from '../service/bookingRequest/booking-request.service';
 import { UserHeaderComponent } from '../user-header/user-header.component';
 
 @Component({
@@ -11,26 +14,78 @@ import { UserHeaderComponent } from '../user-header/user-header.component';
 })
 export class UserRequestsComponent {
 
-    requests = [
-      { serviceName: 'Plumbing', workerName: 'John Doe', status: 'Requested' },
-      { serviceName: 'Electrical', workerName: 'Jane Smith', status: 'Accepted' },
-      { serviceName: 'Carpentry', workerName: 'Mike Brown', status: 'Requested' },
-      { serviceName: 'Mechanic', workerName: 'Jaden Smuff', status: 'Accepted' },
-    ];
+
+  requests: BookingRequest[] = [];  
+  services: { [key: number]: string } = {}; 
+  workers: { [key: number]: string } = {};  
+
+  workerName: string="" ;
+  serviceName: string="";
   
-    cancelRequest(request: any) {
-      console.log(`Canceling request for ${request.serviceName}`);
-      // Logic to handle request cancellation
-      request.status = 'Cancelled';
+  constructor(private bookingRequestService: BookingRequestService, private cdRef: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+   
+    const userId = Number(sessionStorage.getItem('userId'));
+
+
+    if (userId) {
+      this.getAllBookingsByUserId(userId);
     }
-  
-    payNow(request: any) {
-      console.log(`Paying for ${request.serviceName}`);
-      // Logic to handle payment process
-    }
+  }
 
+  getAllBookingsByUserId(id: number): void {
+    this.bookingRequestService.getAllBookingRequestsByUserId(id).subscribe(
+      (response) => {
+        this.requests = response;   
+        console.log('Fetched requests:', this.requests);
 
-    
+        this.requests.forEach(request => {
+          this.fetchServiceName(request.workerId);
+          this.fetchWorkerById(request.workerId);
+        });
+      },
+      (error) => {
+        console.error('Error fetching booking requests:', error);
+      }
+    );
+  }
 
+  fetchServiceName(serviceId: number): void {
+    this.bookingRequestService.getUserById(serviceId).subscribe(res => {
+      console.log('API Response:', res); 
+      if (res && res.expertise) {
+        this.serviceName = res.expertise;   
+        this.services[serviceId] = this.serviceName;   
+      } else {
+        console.error('Service expertise not found for worker ID:', serviceId);
+        this.services[serviceId] = 'Service not available';  
+      }
+      this.cdRef.detectChanges();
+    console.log(this.serviceName)});
+   
+  }
+
+  fetchWorkerById(workerId: number): void {
+    console.log(workerId);
+    this.bookingRequestService.getUserById(workerId).subscribe(
+      res => {
+      this.workerName = res.name;
+      this.workers[workerId] = `${this.workerName}`; 
+      this.cdRef.detectChanges();
+      }
+      );
+  }
+
+  cancelRequest(request: any) {
+    console.log(`Canceling request for ${request.serviceName}`);
+    // Logic to handle request cancellation
+    request.status = 'Cancelled';
+  }
+
+  payNow(request: any) {
+    console.log(`Paying for ${request.serviceName}`);
+    // Logic to handle payment process
+  }
   
 }

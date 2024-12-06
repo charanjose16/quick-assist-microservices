@@ -49,8 +49,8 @@
                 <p>Price: <span>${{workerPrice}}/hour</span></p>
               </div>
               <!-- Booking Button on the right -->
-              <div class="worker-booking-button" style="flex: 1; text-align: right; margin-right: 40px;">
-                <button class="btn btn-lg request-btn">Request Booking</button>
+              <div class="worker-booking-button" style="flex: 1; text-align: right; margin-right: 40px;" routerLink="/user-requests" [queryParams]="{ currentWorkerId: workerId}">
+                <button class="btn btn-lg request-btn" (click)="createBookingRequest()">Request Booking</button>
               </div>
             </div>
           </div>

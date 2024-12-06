@@ -25,9 +25,11 @@
     background-color: #f8f9fa;
     color: #333;
     color: white;
+    height: 250px;
   }
   .card-body{
     transition: transform 0.2s;
+    
   }
   
   .card-body:hover {

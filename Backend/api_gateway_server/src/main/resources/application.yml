@@ -51,6 +51,15 @@ spring:
               - name: AuthenticationFilter
 
 
+          - id: booking-service
+            uri:
+              lb://booking-service
+            predicates:
+              - Path=/payments/**
+            filters:
+              - name: AuthenticationFilter
+
+
           - id: auth-service
             uri:
               lb://auth-service

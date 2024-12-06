@@ -9,7 +9,7 @@
 }
 .main-div::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -19,11 +19,13 @@
     filter: brightness(50%) ;  /* Adjust brightness and blur */
     z-index: -1;  /* Ensure it stays behind the content */
 }
+
 .card-body {
     background-color: rgba(7, 7, 7, 0.897); 
     color: white;/* Light gray color, adjust as needed */
     border-radius: 5px;
     transition: transform 0.2s;
+    height: 180px;
   }
   /* .card {
     border-radius: 10px;
@@ -48,3 +50,41 @@
 .ser-name-span{
     color: darkgoldenrod;
 }
+
+
+.success-animation {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .success-circle {
+    fill: none;
+    stroke: #4caf50;
+    stroke-width: 5;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    animation: strokeAnimation 1s ease-in-out forwards;
+  }
+  
+  .success-check {
+    fill: none;
+    stroke: #4caf50;
+    stroke-width: 5;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: checkAnimation 0.5s 1s ease-in-out forwards;
+  }
+  
+  @keyframes strokeAnimation {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes checkAnimation {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  

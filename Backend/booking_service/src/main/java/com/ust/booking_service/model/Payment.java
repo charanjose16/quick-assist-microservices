@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 public class Payment {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private int id;
+  private int serviceId;
   private double amount;
   @Enumerated(EnumType.STRING)
   private PaymentStatus paymentStatus;

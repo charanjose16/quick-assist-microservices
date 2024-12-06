@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class Booking {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int userId;
     private int workerId;

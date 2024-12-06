@@ -29,8 +29,8 @@
                   class="btn btn-outline-danger btn-sm" 
                   (click)="rejectRequest(request)">Reject</button>
               </div>
-              <p *ngIf="request.serviceStatus !== 'Pending'" class="mt-3 text-center">
-                <em>Action already taken: {{ request.serviceStatus }}</em>
+              <p *ngIf="request.serviceStatus !== 'REQUESTED'" class="mt-3 text-center">
+                <em class="text-warning">Action already taken : {{ request.serviceStatus }}</em>
               </p>
             </div>
           </div>

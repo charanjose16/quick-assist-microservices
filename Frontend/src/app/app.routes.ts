@@ -13,8 +13,10 @@ import { WorkerRequestsComponent } from './worker-requests/worker-requests.compo
 import { WorkerBookingsComponent } from './worker-bookings/worker-bookings.component';
 import { WorkerProfileComponent } from './worker-profile/worker-profile.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 export const routes: Routes = [
+    {path:"",component:LandingPageComponent},
 {path:"create-account", component:CreateAccountComponent},
 {path:"user-signup",component:UserSignupComponent},
 {path:"login",component:LoginPageComponent},

@@ -2,8 +2,6 @@
     /* background: url('images/black-bg2.jpg') no-repeat center center fixed;   */
     background-size: cover;
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     margin: 0;
 }
@@ -20,6 +18,16 @@
     z-index: -1;  /* Ensure it stays behind the content */
 }
 
+.no-bookings-message {
+    margin-top: 180px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffc107;
+    font-size: 1.1em;
+    text-align: center;
+  }
+
 .card-body {
     background-color: rgba(7, 7, 7, 0.897); 
     color: white;/* Light gray color, adjust as needed */
@@ -27,16 +35,10 @@
     transition: transform 0.2s;
     height: 180px;
   }
-  /* .card {
-    border-radius: 10px;
-    background-color: #f8f9fa;
-    color: #333;
-    transition: transform 0.2s;
-    color: white;
-  } */
+
   .card-body:hover {
     transform: scale(1.02);
-    box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829); /* Add a shadow effect */
+    box-shadow: 1px 1px 15px rgba(252, 252, 251, 0.829); /* Add a shadow effect */
   }
   .each-req-div{
       margin-top: 30px;
@@ -88,3 +90,75 @@
     }
   }
   
+
+  .modal-content {
+    background-color: rgba(7, 7, 7, 0.95); /* Dark background for the modal */
+    color: white; /* Light text color for better contrast */
+    border-radius: 8px; /* Smooth edges to match other divs */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border to complement the theme */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7); /* Shadow effect */
+    transition: transform 0.2s;
+}
+
+.modal-content:hover {
+    transform: scale(1.02); /* Slight hover effect for consistency */
+}
+
+.modal-header, .modal-footer {
+    border: none; /* Remove default borders to match the clean style */
+}
+
+.modal-title {
+    color: darkgoldenrod; /* Accent color to match other elements */
+    font-weight: bold;
+}
+
+.modal-body p {
+    color: #ffc107; /* Use golden text for emphasis */
+}
+
+.modal-body input {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent input background */
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Light border for the input */
+}
+
+.modal-body input:focus {
+    border-color: #ffc107; /* Golden border on focus */
+    box-shadow: 0 0 5px #ffc107; /* Glow effect on focus */
+}
+
+.success-animation {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+}
+
+.success-circle {
+    stroke: #ffc107; /* Match the golden theme */
+}
+
+.success-check {
+    stroke: #ffc107;
+}
+
+button.btn-primary {
+    background-color: darkgoldenrod; /* Golden button background */
+    border-color: darkgoldenrod;
+}
+
+button.btn-primary:hover {
+    background-color: #ffc107; /* Brighten on hover */
+    border-color: #ffc107;
+}
+
+button.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent secondary button */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+button.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly brighter on hover */
+    color: #ffc107; /* Golden text on hover */
+}

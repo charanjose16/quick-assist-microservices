@@ -1,100 +1,123 @@
-<div class="main-div">
-  <div class="overlay"></div>
-  <div class="form-container">
-    <form [formGroup]="workerSignup" (ngSubmit)="onSubmit()">
-      <!-- Name Input -->
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
-      </div>
 
-      <!-- Username Input -->
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter user name">
-      </div>
 
-      <!-- password -->
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter Password">
-      </div>
-      
+<body>
+  <div class="main-div">
+    <div class="overlay"></div>
+    <div class="form-container">
+      <h3 class="text-center text-warning animate-slide-in">Worker Sign Up</h3>
+      <p class="text-center text-light fs-5 animate-fade-in">
+        Create an account to join our community.
+      </p>
+      <form [formGroup]="workerSignup" (ngSubmit)="onSubmit()">
+        <!-- Name -->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter your name">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('name')?.invalid && workerSignup.get('name')?.touched">Name is required.Mmore than 4 characters</small>
+        </div>
 
-      <!-- <div class="form-group">
-        <label for="exampleInputRole">Role</label>
-        <select 
-            class="form-control" 
-            id="exampleInputRole" 
-            formControlName="role" 
-            required>
-            <option value="" disabled>Select a role</option>
-            <option value="USER">USER</option>
-            <option value="WORKER">WORKER</option>
-        </select>
-    </div> -->
+        <!-- Username -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter username">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('username')?.invalid && workerSignup.get('username')?.touched">Username is required. More than 4 characters</small>
+        </div>
 
-      <!-- Phone Input -->
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" placeholder="Enter your phone number">
-      </div>
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Enter your password">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('password')?.invalid && workerSignup.get('password')?.touched">Password is required. More than 6 characters</small>
+        </div>
 
-      <!-- Email Input -->
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
-      </div>
+        <!-- Phone Number -->
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" class="form-control" id="phoneNumber" formControlName="phoneNumber" placeholder="Enter your phone number">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('phoneNumber')?.invalid && workerSignup.get('phoneNumber')?.touched">Phone number is required</small>
+        </div>
 
-      <!-- Address Input -->
-      <div class="form-group">
-        <label for="address">Address</label>
-        <input type="text" class="form-control" id="address" formControlName="address" placeholder="Enter your address">
-      </div>
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter your email">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('email')?.invalid && workerSignup.get('email')?.touched">Email is required</small>
+        </div>
 
-      <!-- City Input -->
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" class="form-control" id="city" formControlName="city" placeholder="Enter your city">
-      </div>
+        <!-- Address -->
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" class="form-control" id="address" formControlName="address" placeholder="Enter your address">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('address')?.invalid && workerSignup.get('address')?.touched">Address is required</small>
+        </div>
 
-      <!-- Price Per Hour Input -->
-      <div class="form-group">
-        <label for="price">Price Per Hour</label>
-        <input type="number" class="form-control" id="price" formControlName="price" placeholder="Enter price per hour">
-      </div>
+        <!-- City -->
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" class="form-control" id="city" formControlName="city" placeholder="Enter your city">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('city')?.invalid && workerSignup.get('city')?.touched">City is required</small>
+        </div>
 
-      <!-- Expertise Input -->
-      <div class="form-group">
-        <label for="expertise">Expertise</label>
-        <!-- <input type="text" class="form-control" id="expertise" formControlName="expertise" placeholder="Enter your expertise"> -->
-        <select class="form-control" id="expertise" formControlName="expertise">
-          <option value="">Select your expertise</option>
-          <option value="Plumber">Plumber</option>
-          <option value="Carpenter">Carpenter</option>
-          <option value="Mechanic">Mechanic</option>
-          <option value="Electrician">Electrician</option>
-          <option value="Painter">Painter</option>
-          <option value="Welder">Welder</option>
-        </select>
-      </div>
+        <!-- Price Per Hour -->
+        <div class="form-group">
+          <label for="price">Price Per Hour</label>
+          <input type="number" class="form-control" id="price" formControlName="price" placeholder="Enter price per hour">
+          <small class="text-danger"
+            *ngIf="workerSignup.get('price')?.invalid && workerSignup.get('price')?.touched">Price is required</small>
+        </div>
 
-      <!-- Specialities -->
+        <!-- Expertise -->
+        <div class="form-group">
+          <label for="expertise">Expertise</label>
+          <select class="form-control" id="expertise" formControlName="expertise">
+            <option value="">Select your expertise</option>
+            <option value="Plumber">Plumber</option>
+            <option value="Carpenter">Carpenter</option>
+            <option value="Mechanic">Mechanic</option>
+            <option value="Electrician">Electrician</option>
+            <option value="Painter">Painter</option>
+            <option value="Welder">Welder</option>
+          </select>
+          <small class="text-danger"
+            *ngIf="workerSignup.get('expertise')?.invalid && workerSignup.get('expertise')?.touched">Expertise is required</small>
+        </div>
+
+
+         <!-- Specialities Section -->
       <div class="form-group">
         <label for="specialities">Specialities</label>
-        <div formArrayName="specialities">
+        <div formArrayName="specialities" class="specialities-container">
           <div *ngFor="let speciality of specialities.controls; let i = index" class="speciality-group">
-            <input type="text" class="form-control speciality-input" [formControlName]="i" placeholder="Enter speciality">
-            <button type="button" class="btn btn-danger" (click)="removeSpeciality(i)">
+            <input
+              type="text"
+              class="form-control speciality-input"
+              [formControlName]="i"
+              placeholder="Enter speciality">
+            <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="removeSpeciality(i)">
               <i class="bi bi-trash"></i>
             </button>
           </div>
         </div>
-        <button type="button" class="btn btn-success" (click)="addSpeciality()">+</button>
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="addSpeciality()" style="width: 30px; margin-top: 8px;" >+</button>
       </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary" >Signup</button>
-    </form>
+        <!-- Submit -->
+        <button type="submit" class="btn btn-warning w-100 animate-bounce" style="margin-top: 30px;">Signup</button>
+      </form>
+    </div>
   </div>
-</div>
+</body>
+

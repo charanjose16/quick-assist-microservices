@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
+import { BookingRequestService } from '../service/bookingRequest/booking-request.service';
 import { WorkerHeaderComponent } from '../worker-header/worker-header.component';
 
 @Component({
@@ -10,33 +11,43 @@ import { WorkerHeaderComponent } from '../worker-header/worker-header.component'
   templateUrl: './worker-profile.component.html',
   styleUrl: './worker-profile.component.css'
 })
-export class WorkerProfileComponent {
+export class WorkerProfileComponent implements OnInit {
 
-  worker = {
-    profilePic: '', // Path to the profile picture
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    phone: '+1 234 567 890',
-    city: 'New York',
-    expertise: 'Plumbing, Electrical',
-    specialties: 'Leak detection, Wiring, Pipe installation'
-  };
+  constructor(private profileService:BookingRequestService){}
+  workerId:number =0;
+    profilePic:string= ''; 
+    name:string= '';
+    email:string ='';
+    phone:string= '';
+    city:string= '';
+    expertise:string= '';
+    specialities:string[]=[];
+    specialitiesString:string='';
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.worker.profilePic = e.target.result; // Update the profilePic path
-      };
-      reader.readAsDataURL(file);
-    }
+
+
+  ngOnInit(){
+    this.workerId =Number(sessionStorage.getItem('userId'));
+    console.log(this.workerId);
+    
+    this.getProfileDetails();
+  }
+
+  getProfileDetails(){
+    this.profileService.getUserById(this.workerId).subscribe(res=>{
+      console.log(res.specialties);
+      this.name=res.name
+      this.email=res.email
+      this.phone=res.phoneNumber
+      this.city=res.city
+      this.expertise=res.expertise
+    })
   }
 
   updateProfile() {
     // Simulate profile update
     alert('Profile updated successfully!');
-    console.log(this.worker);
+    
   }
 
 }

@@ -16,10 +16,11 @@ public class BookingServiceImpl{
     @Autowired
     private BookingRepository bookingRepository;
 
-    public BookingDTO createBooking(BookingDTO bookingDTO) {
-        Booking booking=bookingDTO.convertToEntity();
-        Booking savedBooking=bookingRepository.save(booking);
-        return BookingDTO.convertToDTO(savedBooking);
+    public Booking createBooking(Booking bookingDTO) {
+//        Booking booking=bookingDTO.convertToEntity();
+//        Booking savedBooking=bookingRepository.save(booking);
+//        return BookingDTO.convertToDTO(savedBooking);
+        return bookingRepository.save(bookingDTO);
     }
 
     public Booking findBookingById(int id) {
@@ -45,4 +46,13 @@ public class BookingServiceImpl{
         booking.setBookingStatus(bookingStatus);
         return bookingRepository.save(booking);
     }
+
+    public List<Booking> getUserBookings(int userId) {
+        return bookingRepository.findAllByUserId(userId);
+    }
+
+    public List<Booking> getWorkerBookings(int userId) {
+        return bookingRepository.findAllByWorkerId(userId);
+    }
+
 }

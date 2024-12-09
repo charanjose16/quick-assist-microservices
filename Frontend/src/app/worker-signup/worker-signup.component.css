@@ -1,75 +1,149 @@
+/* General Styling */
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #000000, #121212);
+  color: white;
+  /* overflow: hidden; <-- Remove this to allow scrolling */
+}
+
+/* Main Div */
 .main-div {
-  background: url('images/bg1.jpg') no-repeat center center fixed;
-  background-size: cover;
-  background-attachment: fixed; /* Ensures the background stays fixed */
+  position: relative;
+  height: auto; /* Adjusted from 100vh to auto */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
-  overflow-y: auto; /* Allows scrolling of content */
+  background: url('images/bg1.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
+/* Overlay */
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   z-index: -1;
 }
 
-.form-container {
-  position: relative; /* Allows the use of top property */
-  z-index: 1;
-  padding: 30px;
- 
-  border-radius: 8px;
-  margin-top: 500px;
-  background-color: rgba(255, 255, 255, 0.8);
-  width: 100%;
-  max-width: 500px;
-  background-color: rgba(250, 250, 250, 0.198);
-}
 
-
-.speciality-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.speciality-input {
-  margin-right: 10px;
-}
-
-.add-speciality-btn, .remove-speciality-btn {
-  margin-left: 10px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-label {
-  color: rgb(255, 196, 0);
+input {
+  background: rgba(30, 30, 30, 0.9);
+  border: 1px solid rgba(255, 196, 0, 0.5);
+  /* color: #fff; */
 }
 
 input::placeholder {
-  color: rgba(0, 0, 0, 0.596);
+  color: rgba(255, 255, 255, 0.7);
+}
+label {
+  color: rgb(255, 196, 0);
+  /* font-weight: bold; */
+  margin-top: 20px;
 }
 
+/* Form Container */
+.form-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  z-index: 1;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 196, 0, 0.3);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  animation: fade-in 1.2s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Input Styles */
+.form-control {
+  background: rgba(30, 30, 30, 0.7);
+  border: 1px solid rgba(255, 196, 0, 0.5);
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+/* Button Effects */
 button {
   background-color: rgb(255, 196, 0);
-  border-color: rgb(255, 196, 0);
+  border: none;
   color: black;
+  padding: 10px;
+  border-radius: 25px;
+  transition: transform 0.2s ease-in-out, background-color 0.2s ease;
 }
 
 button:hover {
   background-color: black;
+  color: rgb(255, 196, 0);
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.specialities-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.speciality-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.speciality-input {
+  flex: 1;
+  background: rgba(30, 30, 30, 0.9);
   color: white;
-  border-color: black;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  color: white;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  transform: scale(1.05);
 }

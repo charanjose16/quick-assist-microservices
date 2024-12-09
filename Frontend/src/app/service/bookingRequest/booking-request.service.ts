@@ -60,8 +60,32 @@ export class BookingRequestService  {
   getPaymentStatusByRequestId(serviceId:number):Observable<Payment>{
    return this.httpClient.get<Payment>(`${this.baseUrl}/payments/getPaymentByServiceId/${serviceId}`)
   }
+
   
-}
+  getAllBookingsUser(userId: number): Observable<Booking[]> {
+    return this.httpClient.get<Booking[]>(`${this.baseUrl}/booking/user/${userId}`)
+  }
+  getAllBookingsWorker(workerId: number): Observable<Booking[]> {
+    return this.httpClient.get<Booking[]>(`${this.baseUrl}/booking/worker/${workerId}`)
+  }
+
+
+  updateBookingStatus(id: number,status: string): Observable<Booking>{
+    return this.httpClient.put<Booking>(`${this.baseUrl}/booking/status/${id}/${status}`, {status});
+  }
+
+
+  sendSms(phoneNumber: string, message: string): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/sms/send`, null, {
+      params: { phoneNumber, message },
+    });
+  }
+  
+
+
+
+
+ }
 
 
 

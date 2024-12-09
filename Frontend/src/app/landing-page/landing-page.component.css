@@ -1,0 +1,135 @@
+/* General Styling */
+.landing-page {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(to bottom, #000000, #1a1a1a);
+    padding: 100px 0;
+  }
+  
+  .hero-section h1 span {
+    color: #ffc107;
+  }
+  
+  /* About Section */
+  .about-section {
+    background-color: #111111;
+  }
+  
+  /* Features Section */
+  .features-section {
+    background: linear-gradient(to bottom, #1a1a1a, #000000);
+  }
+  
+  .features-section i {
+    margin-bottom: 15px;
+  }
+  
+  /* Testimonials Section */
+  .testimonials-section {
+    background-color: #111111;
+  }
+  
+  /* Contact Section */
+  .contact-section {
+    background-color: #1a1a1a;
+  }
+  
+  /* Animations */
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  
+  .animate-fade-in-delayed {
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+  }
+  
+  .animate-slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 1s forwards;
+  }
+  
+  .animate-zoom {
+    opacity: 0;
+    transform: scale(0.8);
+    animation: zoomIn 1s forwards;
+  }
+  
+  .animate-bounce {
+    animation: bounce 1.5s infinite;
+  }
+  
+  /* Keyframes */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes zoomIn {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Custom Label Styling */
+.custom-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffc107; /* Matches text-warning */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    position: relative;
+    animation: label-slide-in 1s forwards;
+  }
+  
+  .custom-label::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ffc107;
+    transition: width 0.3s ease;
+    margin-top: 4px;
+  }
+  
+  .custom-label:hover::after {
+    width: 100%;
+  }
+  
+  /* Animations */
+  @keyframes label-slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

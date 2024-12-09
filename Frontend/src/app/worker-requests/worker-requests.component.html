@@ -1,36 +1,48 @@
 <div class="main-div">
     <app-worker-header></app-worker-header>
     <div class="container mt-5">
-      <h2 class="text-center text-white mb-4">Customer Requests</h2>
-      <div class="row">
-        <!-- Loop through an array of customer requests -->
-        <div class="col-md-4 each-req-div" *ngFor="let request of requests" >
+      <!-- Header Section -->
+      <h2 class="text-center text-white mb-4" style="margin-top:30px">Customer Requests</h2>
+  
+      <!-- Message to show if no requests are available -->
+      <div *ngIf="requests.length === 0" class="text-center text-white no-requests-message" style="padding-top: 180px;">
+        <p class="fs-4 fw-bold">No Requests Available</p>
+        <p class="fs-6">Currently, there are no customer requests. Stay tuned for new requests!</p>
+      </div>
+  
+      <!-- Request List Section -->
+      <div class="row" *ngIf="requests.length > 0">
+        <div class="col-md-4 each-req-div" *ngFor="let request of requests">
           <div class="card shadow-sm">
             <div class="card-body" style="height: 220px;">
               <h5 class="card-title">Customer Name: <span class="text-warning">{{ users[request.userId] }}</span></h5>
-              <p class="card-text"><strong>Service Required:</strong> {{ services[request.workerId] }}</p>
-              <p class="card-text"><strong>Address:</strong> {{ addresses[request.userId] }}</p>
               <p class="card-text">
-                <strong>Request Status: </strong> 
-                <span class="badge" 
-                  [ngClass]="{'bg-warning': request.serviceStatus === 'REQUESTED', 
-                              'bg-success': request.serviceStatus === 'ACCEPTED',
-                              'bg-danger': request.serviceStatus === 'REJECTED'}">
+                <strong>Service Required:</strong> {{ services[request.workerId] }}
+              </p>
+              <p class="card-text">
+                <strong>Address:</strong> {{ addresses[request.userId] }}
+              </p>
+              <p class="card-text">
+                <strong>Request Status: </strong>
+                <span class="badge"
+                  [ngClass]="{
+                    'bg-warning': request.serviceStatus === 'REQUESTED',
+                    'bg-success': request.serviceStatus === 'ACCEPTED',
+                    'bg-danger': request.serviceStatus === 'REJECTED' || request.serviceStatus === 'CANCELLED'
+                  }"
+                >
                   {{ request.serviceStatus }}
                 </span>
               </p>
   
               <!-- Action Buttons -->
               <div *ngIf="request.serviceStatus === 'REQUESTED'" class="d-flex justify-content-between mt-3">
-                <button 
-                  class="btn btn-outline-success btn-sm" 
-                  (click)="acceptRequest(request)">Accept</button>
-                <button 
-                  class="btn btn-outline-danger btn-sm" 
-                  (click)="rejectRequest(request)">Reject</button>
+                <button class="btn btn-outline-success btn-sm" (click)="acceptRequest(request)">Accept</button>
+                <button class="btn btn-outline-danger btn-sm" (click)="rejectRequest(request)">Reject</button>
               </div>
+  
               <p *ngIf="request.serviceStatus !== 'REQUESTED'" class="mt-3 text-center">
-                <em class="text-warning">Action already taken : {{ request.serviceStatus }}</em>
+                <em class="text-warning">Action already taken: {{ request.serviceStatus }}</em>
               </p>
             </div>
           </div>

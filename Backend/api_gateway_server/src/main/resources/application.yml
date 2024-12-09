@@ -55,6 +55,15 @@ spring:
             uri:
               lb://booking-service
             predicates:
+              - Path=/sms/**
+            filters:
+              - name: AuthenticationFilter
+
+
+          - id: booking-service
+            uri:
+              lb://booking-service
+            predicates:
               - Path=/payments/**
             filters:
               - name: AuthenticationFilter

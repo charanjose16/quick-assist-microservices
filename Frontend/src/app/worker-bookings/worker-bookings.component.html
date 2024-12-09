@@ -1,22 +1,42 @@
-
 <div class="main-div">
     <app-worker-header></app-worker-header>
     <div class="container mt-5">
-      <h2 class="text-center text-white mb-4">Your Bookings</h2>
-      <div class="row">
-        <!-- Loop through worker's bookings -->
+      <h2 class="text-center text-white mb-4" style="margin-top: 30px;">My Bookings</h2>
+      
+      <!-- Show a custom message if no bookings are available -->
+      <div *ngIf="bookings.length === 0" class="text-center text-white mt-5" style="padding-top: 180px;">
+        <p class="fs-4 fw-bold">Oops! No bookings yet.</p>
+        <button class="btn btn-warning mt-3" (click)="redirectToServices()">Check Requests</button>
+      </div>
+  
+      <!-- Display bookings when available -->
+      <div class="row" *ngIf="bookings.length > 0">
         <div class="col-md-4 each-req-div" *ngFor="let booking of bookings">
           <div class="card shadow-sm">
             <div class="card-body">
-              <h5 class="card-title">Service Name: <span class="text-warning"> {{ booking.serviceName }}</span></h5>
-              <p class="card-text">Customer Name: <span class="ser-name-span"> {{ booking.customerName }}</span></p>
-              <p class="card-text">Booked Date & Time: <span class="ser-name-span"> {{ booking.bookingDate | date: 'yyyy-MM-dd HH:mm a' }}</span></p>
-              <p class="card-text">Booking Status:
-                <span class="badge" [ngClass]="{'bg-success': booking.status === 'Completed', 
-                                                'bg-primary': booking.status === 'Ongoing'}">
-                   {{ booking.status }}
+              <h5 class="card-title">Service Name: <span class="text-warning">{{ services[booking.workerId] }}</span></h5>
+              <p class="card-text">Customer Name: <span class="ser-name-span"> {{ workers[booking.userId] }} </span></p>
+              <p class="card-text"><strong>Address:</strong> {{ addresses[booking.userId] }}</p>
+              <p class="card-text"><strong>Payment Status:</strong> {{ paymentStatusMap[booking.serviceId] }}</p>
+              <p class="card-text">Booked Date: <span class="ser-name-span">{{ booking.date }}</span></p>
+              <p class="card-text">
+                Booking Status:
+                <span class="badge"
+                  [ngClass]="{
+                    'bg-success': booking.bookingStatus === 'COMPLETED',
+                    'bg-primary': booking.bookingStatus === 'ONGOING',
+                    'bg-danger': booking.bookingStatus === 'CANCELLED'
+                  }">
+                  {{ booking.bookingStatus }}
                 </span>
               </p>
+              <!-- Show button only if booking is not completed -->
+              <button 
+                *ngIf="booking.bookingStatus !== 'COMPLETED'" 
+                (click)="updateBookingStatus(booking.id)" 
+                class="btn btn-success">
+                Completed
+              </button>
             </div>
           </div>
         </div>

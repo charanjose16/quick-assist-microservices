@@ -1,49 +1,59 @@
-.main-div{
-    /* background: url('images/black-bg2.jpg') no-repeat center center fixed;   */
+/* General Layout */
+.main-div {
     background-size: cover;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; /* Align child elements directly under the header */
     height: 100vh;
     margin: 0;
-}
-.main-div::before {
+  }
+  
+  .main-div::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('images/black-bg2.jpg') no-repeat center center fixed;  /* Background image for blur effect */
+    background: url('images/black-bg2.jpg') no-repeat center center fixed;
     background-size: cover;
-    filter: brightness(50%) ;  /* Adjust brightness and blur */
-    z-index: -1;  /* Ensure it stays behind the content */
-}
-.card-body {
-    background-color: rgba(7, 7, 7, 0.897); 
-    color: white;/* Light gray color, adjust as needed */
-    border-radius: 5px;
+    filter: brightness(50%) ; /* Added a slight blur for enhanced effect */
+    z-index: -1;
   }
-  .each-req-div{
-      margin-top: 30px;
-  }
-  .shadow-sm{
-    border-color: rgba(255, 255, 255, 0.315);
+
+
+  
+  /* Cards and Styling */
+  .card-body {
     background-color: rgba(7, 7, 7, 0.897);
-    border-width: 2px;
-}
-.card-body {
-    background-color: rgba(7, 7, 7, 0.897); 
-    color: white;/* Light gray color, adjust as needed */
+    color: white;
+    border-radius: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 300px;
   }
   
   .card-body:hover {
-    transform: scale(1.03); /* Slightly enlarge the card body */
-    box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829); /* Add a shadow effect */
+    transform: scale(1.03);
+    box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829);
   }
-
+  
+  .shadow-sm {
+    border-color: rgba(255, 255, 255, 0.315);
+    background-color: rgba(7, 7, 7, 0.897);
+    border-width: 2px;
+  }
+  
+  .each-req-div {
+    margin-top: 20px;
+  }
+  
+  /* Responsiveness */
   @media (max-width: 768px) {
+    .each-req-div {
+      flex: 100%;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
     .card {
       margin-bottom: 20px;
     }

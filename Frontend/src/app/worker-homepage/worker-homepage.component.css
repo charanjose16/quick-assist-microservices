@@ -1,5 +1,5 @@
 .main-div {
-    background: url('images/bg1.jpg') no-repeat center center fixed;
+    background: url('images/black-bg2.jpg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -9,9 +9,20 @@
     color: white;
     flex-direction: column;
     text-align: center;
-    /* filter: brightness(90%); */
+    filter: brightness(90%);
   }
-  
+  .main-div::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: url('images/black-bg2.jpg') no-repeat center center fixed;  Background image for blur effect */
+    background-size: cover;
+    filter: brightness(0%);  /* Adjust brightness and blur */
+    z-index: -1;  /* Ensure it stays behind the content */
+}
   .hero-text h1 {
     font-size: 3em;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);

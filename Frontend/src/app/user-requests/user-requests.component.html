@@ -1,7 +1,14 @@
 <div class="main-div">
   <app-user-header></app-user-header>
   <div class="container mt-5">
-    <h2 class="text-center text-white mb-4" style="margin-top: 100px;">Your Requests</h2>
+    <h2 class="text-center text-white mb-4" style="margin-top: 30px;">Your Requests</h2>
+
+    <div *ngIf="requests.length === 0" class="text-center text-white no-bookings-message" >
+      <p class="fs-4 fw-bold">No Requests Available</p>
+      <p class="fs-6">You haven’t made any request yet. Start equesting a service now!</p>
+    </div>
+
+
     <div class="row">
       <div class="col-md-4 each-req-div" *ngFor="let request of requests">
         <div class="card shadow-sm">
@@ -16,7 +23,7 @@
                     [ngClass]="{
                       'bg-warning': request.serviceStatus === 'REQUESTED',
                       'bg-success': request.serviceStatus === 'ACCEPTED',
-                      'bg-danger': request.serviceStatus === 'REJECTED'
+                      'bg-danger': request.serviceStatus === 'REJECTED' || request.serviceStatus === 'CANCELLED'
                     }">
                 {{ request.serviceStatus }}
               </span>
@@ -27,46 +34,93 @@
               (click)="cancelRequest(request)">Cancel Request
             </button>
             <button 
-  *ngIf="request.serviceStatus === 'ACCEPTED' && paymentStatusMap[request.id] !== 'COMPLETED'" 
-  class="btn btn-outline-success btn-sm" 
-  (click)="payNow(request)">Pay Now
-</button>
+              *ngIf="request.serviceStatus === 'CANCELLED'" 
+              class="btn btn-outline-secondary btn-sm"  disabled
+              (click)="cancelRequest(request)">Cancelled
+            </button>
+            <button 
+                *ngIf="request.serviceStatus === 'ACCEPTED' && paymentStatusMap[request.id] !== 'COMPLETED'" 
+                class="btn btn-outline-success btn-sm" 
+                (click)="payNow(request)">Pay Now
+              </button>
 
-<button 
-  *ngIf="paymentStatusMap[request.id] === 'COMPLETED'" 
-  class="btn btn-outline-secondary btn-sm" 
-  disabled>Payment Done
-</button>
+                <button 
+                  *ngIf="paymentStatusMap[request.id] === 'COMPLETED'" 
+                  class="btn btn-outline-secondary btn-sm" 
+                  disabled>Payment Done
+                </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Payment Success Modal -->
-  <div 
-    class="modal fade" 
-    id="paymentModal" 
-    tabindex="-1" 
-    aria-labelledby="paymentModalLabel" 
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content text-center">
-        <div class="modal-body">
-          <div class="success-animation">
-            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="60" cy="60" r="50" class="success-circle"></circle>
-              <path d="M40 60l15 15L80 50" class="success-check"></path>
-            </svg>
-          </div>
-          <h5 class="mt-4">Payment Successful!</h5>
-          <p>Your payment has been successfully processed.</p>
-          <button 
-            type="button" 
-            class="btn btn-primary mt-3" 
-            data-bs-dismiss="modal">Close</button>
-        </div>
+<!-- Duration Selection Modal -->
+<!-- Confirm Booking Modal -->
+<div 
+  class="modal fade" 
+  id="durationModal" 
+  tabindex="-1" 
+  aria-labelledby="durationModalLabel" 
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="durationModalLabel">Confirm Booking</h5>
+        <button 
+          type="button" 
+          class="btn-close" 
+          data-bs-dismiss="modal" 
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Enter duration (in hours):</p>
+        <input 
+          type="number" 
+          class="form-control mb-3" 
+          [(ngModel)]="selectedDuration" 
+          min="1" 
+          required />
+        <p>Total Price: ₹{{ selectedDuration * workerPrice }}</p>
+      </div>
+      <div class="modal-footer">
+        <button 
+          type="button" 
+          class="btn btn-secondary" 
+          (click)="close()">Close</button>
+        <button 
+          type="button" 
+          class="btn btn-primary" 
+          (click)="confirmBooking(currentRequest)">Confirm Booking</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Payment Success Modal -->
+<div 
+  class="modal fade" 
+  id="paymentModal" 
+  tabindex="-1" 
+  aria-labelledby="paymentModalLabel" 
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-body">
+        <div class="success-animation">
+          <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="50" class="success-circle"></circle>
+            <path d="M40 60l15 15L80 50" class="success-check"></path>
+          </svg>
+        </div>
+        <h5 class="mt-4">Payment Successful!</h5>
+        <p>Your payment has been successfully processed.</p>
+        <button 
+          type="button" 
+          class="btn btn-primary mt-3" 
+          data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,6 +1,7 @@
 package com.ust.booking_service.api;
 
 import com.ust.booking_service.dto.BookingDTO;
+import com.ust.booking_service.enums.BookingStatus;
 import com.ust.booking_service.model.Booking;
 import com.ust.booking_service.service.BookingServiceImpl;
 import lombok.Getter;
@@ -17,8 +18,13 @@ public class BookingController {
     private BookingServiceImpl bookingService;
 
     @PostMapping("/createBooking")
-    public BookingDTO createBooking(@RequestBody BookingDTO booking){
+    public Booking createBooking(@RequestBody Booking booking){
         return bookingService.createBooking(booking);
+    }
+
+    @PutMapping("/status/{id}/{bookingStatus}")
+    public void updateBookingStatus(@PathVariable int id,@PathVariable BookingStatus bookingStatus) {
+         bookingService.updateBookingStatus(id, bookingStatus);
     }
 
     @GetMapping("/{id}")
@@ -28,7 +34,18 @@ public class BookingController {
 
     @GetMapping
     public List<Booking> getAllBookings(){
+
         return bookingService.findAllBookings();
+    }
+
+    @GetMapping("/user/{id}")
+    public List<Booking> getBookingsUser(@PathVariable int id){
+        return bookingService.getUserBookings(id);
+    }
+
+    @GetMapping("/worker/{id}")
+    public List<Booking> getBookingsWorker(@PathVariable int id){
+        return bookingService.getWorkerBookings(id);
     }
 
     @PutMapping("/{id}")

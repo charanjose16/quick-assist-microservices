@@ -19,7 +19,7 @@ export class WorkerSignupComponent implements OnInit {
     // Initialize the form group with FormBuilder
     this.workerSignup = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
-      username:['', [Validators.required, Validators.minLength(2)]],
+      username:['', [Validators.required, Validators.minLength(4)]],
       phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: [''],

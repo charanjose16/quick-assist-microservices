@@ -1,54 +1,78 @@
 <div class="main-div">
-    <app-user-header></app-user-header>
-    <div class="container mt-5">
-      <h2 class="text-center text-white mb-4">My Bookings</h2>
-      <div class="row">
-        <!-- Card 1 -->
-        <div class="col-md-4 each-req-div">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Service Name: <span class="text-warning">Plumbing</span></h5>
-              <p class="card-text">Worker Name:<span class="ser-name-span"> John Doe</span></p>
-              <p class="card-text">Booked Date & Time:<span class="ser-name-span"> 2023-12-01 10:00 AM</span></p>
-              <p class="card-text">Booking Status: <span class="badge bg-success">Completed</span></p>
-            </div>
+  <app-user-header></app-user-header>
+  <div class="container mt-5">
+    <h2 class="text-center text-white mb-4" style="margin-top: 30px;">My Bookings</h2>
+    
+    <!-- Show a message if no bookings are available -->
+    <div *ngIf="bookings.length === 0" class="text-center text-white no-bookings-message" >
+      <p class="fs-4 fw-bold">No Bookings Available</p>
+      <p class="fs-6">You haven’t made any bookings yet. Start booking a service now!</p>
+    </div>
+    
+    <!-- Display bookings if they exist -->
+    <div class="row" *ngIf="bookings.length > 0">
+      <div class="col-md-4 each-req-div" *ngFor="let booking of bookings">
+        <div class="card shadow-sm">
+          <div class="card-body" (click)="showWorkerDetails(booking.workerId)" data-bs-toggle="modal" data-bs-target="#workerDetailsModal">
+            <h5 class="card-title">Service Name: <span class="text-warning">{{ services[booking.workerId] }}</span></h5>
+            <p class="card-text">Worker Name: <span class="ser-name-span"> {{ workers[booking.workerId] }} </span></p>
+            <p class="card-text">
+              Booked Date : <span class="ser-name-span">{{ booking.date }} </span>
+            </p>
+            <p class="card-text">
+              Booked Time : <span class="ser-name-span"> {{ booking.time }}</span>
+            </p>
+            <p class="card-text">
+              Booking Status: 
+              <span class="badge"
+                [ngClass]="{
+                  'bg-success': booking.bookingStatus === 'COMPLETED',
+                  'bg-primary': booking.bookingStatus === 'ONGOING',
+                  'bg-danger': booking.bookingStatus === 'CANCELLED'
+                }">
+                {{ booking.bookingStatus }}
+              </span>
+            </p>
           </div>
         </div>
-        <!-- Card 2 -->
-        <div class="col-md-4 each-req-div">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Service Name: <span class="text-warning">Electrical</span></h5>
-              <p class="card-text">Worker Name:<span class="ser-name-span"> Jane Smith</span></p>
-              <p class="card-text">Booked Date & Time:<span class="ser-name-span"> 2023-12-02 2:00 PM</span></p>
-              <p class="card-text">Booking Status: <span class="badge bg-primary">Ongoing</span></p>
-            </div>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="col-md-4 each-req-div">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Service Name: <span class="text-warning">Carpentry</span></h5>
-              <p class="card-text">Worker Name:<span class="ser-name-span"> Mike Brown</span></p>
-              <p class="card-text">Booked Date & Time:<span class="ser-name-span"> 2023-12-03 11:00 AM</span></p>
-              <p class="card-text">Booking Status: <span class="badge bg-success">Completed</span></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 each-req-div">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title">Service Name: <span class="text-warning">Electrical</span></h5>
-                <p class="card-text">Worker Name:<span class="ser-name-span"> Jane Smith</span></p>
-                <p class="card-text">Booked Date & Time:<span class="ser-name-span"> 2023-12-02 2:00 PM</span></p>
-                <p class="card-text">Booking Status: <span class="badge bg-primary">Ongoing</span></p>
-              </div>
-            </div>
-          </div>
-
-
       </div>
     </div>
   </div>
+</div>
+
+
+<!-- Worker Details Modal -->
+<div 
+  class="modal fade" 
+  id="workerDetailsModal" 
+  tabindex="-1" 
+  aria-labelledby="workerDetailsModalLabel" 
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="workerDetailsModalLabel" >Worker Details</h5>
+        <button 
+          type="button" 
+          class="btn-close" 
+          data-bs-dismiss="modal" 
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong class="text-white">Name:</strong> {{ workerName1 }}</p>
+        <p><strong class="text-white">Email:</strong> {{ workerEmail1 }}</p>
+        <p><strong class="text-white">Phone Number:</strong> {{ workerPhoneNumber1 }}</p>
+        <p><strong class="text-white">City:</strong> {{ workerCity1 }}</p>
+        <p><strong class="text-white">Expertise:</strong> {{ workerExpertise1 }}</p>
+        <p><strong class="text-white">Price:</strong> ₹{{ workerPrice1 }}</p>
+      </div>
+      <div class="modal-footer">
+        <button 
+          type="button" 
+          class="btn btn-primary" 
+          data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

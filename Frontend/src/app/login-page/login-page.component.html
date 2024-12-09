@@ -1,19 +1,45 @@
 <div class="main-div">
-    <div class="overlay"></div>
-    <div class="form-container">
-      <form (submit)="login(loginForm.value)" [formGroup]="loginForm">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Username</label>
-          <input type="email" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="username" >
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password" >
-        </div>
-        <button  type="submit" class="btn btn-primary">Submit</button>
-      </form>
+  <div class="overlay"></div>
+  <div class="form-container shadow-lg animate-fade-in">
+    <h2 class="text-center text-warning" style=" text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); padding-bottom: 30px;">
+      Sign In to Explore
+    </h2>
+    <form (submit)="login(loginForm.value)" [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          formControlName="username"
+        />
+        <small class="text-danger" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+          User Name is required
+        </small>
+      </div>
+      <div class="form-group" style="margin-top: 20px;">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <small class="text-danger" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          Password is required
+        </small>
+      </div>
+      <button type="submit" class="btn btn-warning w-100" style="margin-top: 10px;">Login</button>
+    </form>
+    <div class="d-flex justify-content-between mt-3">
+      <a href="/create-account" class="btn btn-outline-warning">Create Account</a>
+      <a href="/login" class="text-warning">Forgot Password?</a>
     </div>
-  
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 </div>

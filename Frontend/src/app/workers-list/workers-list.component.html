@@ -1,41 +1,37 @@
 <app-user-header></app-user-header>
 <div class="main-div">
-  <div 
-    class="container mt-5" 
-    style="display: flex; flex-direction: column; justify-content: center; text-align: center; align-items: center;"
-  >
-    <h2 class="mb-4 text-center" style="color: white; padding-bottom: 20px;">Available Workers</h2>
+  <div class="container mt-5">
+    <h2 class="header-title">Available Workers</h2>
     <!-- Display Workers Dynamically -->
-    <div *ngIf="workers.length > 0; else noWorkers">
+    <div *ngIf="workers.length > 0; else noWorkers" class="worker-container">
       <div 
-        class="worker-card mb-3" 
+        class="worker-card" 
         *ngFor="let worker of workers" 
         routerLink="/worker-details"
-        [queryParams]="{ id:worker.id,name: worker.name,phoneNumber:worker.phoneNumber,email:worker.email, expertise: worker.expertise, city: worker.city ,specialities:worker.specialities,price:worker.price}"
+        [queryParams]="{ id: worker.id, name: worker.name, phoneNumber: worker.phoneNumber, email: worker.email, expertise: worker.expertise, city: worker.city, specialities: worker.specialities, price: worker.price }"
       >
         <!-- Worker Image -->
-        <div class="worker-image" style="flex: 1; text-align: center;">
+        <div class="worker-image">
           <img 
             [src]="worker.image || 'https://via.placeholder.com/100'" 
-            alt="Worker Image" 
-            style="border-radius: 50%; width: 100px; height: 100px;"
+            alt="Worker Image"
           >
         </div>
-        <!-- Worker Info -->
-        <div class="worker-info" style="flex: 2; padding-left: 20px; text-align:center">
-          <h5><span class="text-warning">{{ worker.name }}</span></h5>
-          <p>Service: {{ worker.expertise }}</p>
-          <p>Specialty: {{ worker.specialities.join(', ')}}</p>
+        <!-- Worker Info Section -->
+        <div class="worker-info">
+          <h5 class="worker-name">{{ worker.name }}</h5>
+          <p class="worker-expertise">Service: {{ worker.expertise }}</p>
+          <p class="worker-specialties">Specialties: {{ worker.specialities.join(', ') }}</p>
         </div>
-        <!-- Worker Price -->
-        <div class="worker-price" style="flex: 1; text-align: center;">
-          <p>Price: <span>${{ worker.price }}/hour</span></p>
+        <!-- Worker Price Section -->
+        <div class="worker-price">
+          <p class="price">₹ {{ worker.price }}/hr</p>
         </div>
       </div>
     </div>
     <!-- No Workers Template -->
     <ng-template #noWorkers>
-      <p class="text-center text-muted">No workers available for this profession.</p>
+      <p class="text-muted no-workers-message">No workers available for this profession.</p>
     </ng-template>
   </div>
 </div>

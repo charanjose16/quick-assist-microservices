@@ -1,0 +1,114 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #000000, #121212);
+    color: white;
+    overflow: hidden;
+  }
+  
+  /* Wrapper */
+  .choose-account-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(30, 30, 30, 0.8));
+    z-index: -1;
+  }
+  
+  .content {
+    z-index: 1;
+    animation: fade-in 2s ease-in-out;
+  }
+  
+  /* Headline Animation */
+  h1.animate-slide-in {
+    animation: slide-in 1.5s ease-out;
+  }
+  
+  p.animate-fade-in {
+    animation: fade-in 2s ease-in;
+  }
+  
+  /* Buttons Container */
+  .buttons-container {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  /* Account Option */
+  .account-option {
+    width: 300px;
+    padding: 20px;
+    background: linear-gradient(135deg, #1e1e1e, #292929);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .account-option:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 196, 0, 0.5);
+  }
+  
+  /* Icon */
+  .account-option .icon {
+    font-size: 3rem;
+    color: #ffcc00;
+    margin-bottom: 15px;
+  }
+  
+  /* Button */
+  .account-option button {
+    margin-top: 15px;
+    background: none;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+    border-radius: 20px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .account-option button:hover {
+    background: #ffcc00;
+    color: black;
+  }
+  
+  /* Animations */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  

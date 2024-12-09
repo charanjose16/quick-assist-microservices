@@ -1,52 +1,129 @@
-.main-div{
-    background: url('images/bg1.jpg') no-repeat center center fixed;  
+/* Main container styling */
+.main-div {
+    background: url('images/bg1.jpg') no-repeat center center fixed;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-}
-
-.overlay {
+    overflow: hidden;
+  }
+  
+  /* Overlay to darken background */
+  .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(1, 1, 1, 0.801); 
-    z-index: -1; 
-}
-
-.form-container {
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: -1;
+  }
+  
+  /* Form container styling */
+  .form-container {
     z-index: 1;
-    height: 280px;
-    width: 600px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: rgba(250, 250, 250, 0.198);
-
-}
-form{
+    width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: rgba(20, 20, 20, 0.95);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.7);
+    animation: slide-in 0.8s ease-out;
+  }
+  
+  /* Form layout adjustments */
+  form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-}
-
-label{
-    color: rgb(255, 196, 0);
-}
-input::placeholder{
-    color: rgba(0, 0, 0, 0.596);
-}
-button{
-    background-color: rgb(255, 196, 0);
-    border-color: rgb(255, 196, 0);
-    color: black;
-}
-button:hover{
-    background-color: black;
+    gap: 15px;
+  }
+  
+  /* Label styling */
+  label {
+    color: #ffc107;
+    /* font-weight: bold; */
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  /* label::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ffc107;
+    transition: width 0.3s ease;
+    margin-top: 5px;
+  }
+  
+  label:hover::after {
+    width: 100%;
+  } */
+  
+  /* Input and placeholder styling */
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  input,
+  textarea {
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    border-color:black;
-}
-/* <a href="https://www.vecteezy.com/photo/22555555-3d-abstract-red-and-black-background-by-ai-generated-can-be-use-as-facebook-cover">3D Abstract Red and Black Background by can be use as facebook cover Stock photos by Vecteezy</a> */
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #ffc107;
+    border: 1px solid #ffc107;
+    color: black;
+    /* font-weight: bold; */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: black;
+    color: #ffc107;
+    border-color: black;
+  }
+  
+  /* Anchor link adjustments */
+  a.text-warning {
+    color: #ffc107;
+    text-decoration: none;
+  }
+  
+  a.text-warning:hover {
+    text-decoration: underline;
+  }
+  
+  /* Animations */
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 1.5s ease-in-out;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

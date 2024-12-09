@@ -1,28 +1,161 @@
+/* General Reset & Dark Theme Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Arial', sans-serif;
+  color: #e0e0e0;
+  background-color: #121212; /* Dark Background */
+  height: 100%;
+}
+
+/* Main Div with Hero Section */
 .main-div {
-    background: url('images/bg1.jpg') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin-top: 0px; /* Margin to account for fixed navbar */
-    color: white;
-    flex-direction: column;
-    text-align: center;
-    /* filter: brightness(90%); */
-  }
-  
-  .hero-text h1 {
-    font-size: 3em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  }
+  background: url('images/bg1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #fff;
+  flex-direction: column;
+  text-align: center;
+}
 
-  .hero-text p {
-    font-size: 1.5em;
-    margin-top: 10px;
-  }
+/* Hero Section with Animations */
+.hero-text {
+  animation: fadeIn 2s ease-in;
+}
 
-  .hero-text .btn {
-    margin-top: 20px;
+.hero-text h1 {
+  font-size: 3.5em;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+}
+
+.hero-text p {
+  font-size: 1.6em;
+  margin: 10px 0;
+}
+
+.hero-text .btn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  font-size: 1.2em;
+  border: 2px solid #ffd700;
+  color: #ffd700;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: bounceIn 1.2s ease-in-out;
+}
+
+.hero-text .btn:hover {
+  background-color: #ffd700;
+  color: #121212;
+}
+
+/* Features Section */
+.features-section {
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 0;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.feature-box {
+  background: #333;
+  color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  flex: 1 1 calc(20% - 10px);
+  text-align: center;
+  font-size: 1.1em;
+  transition: transform 0.3s ease;
+  animation: slideUp 1s ease-out;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+}
+
+/* Categories Section */
+.categories-section {
+  margin: 40px 0;
+}
+
+.categories-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 0 10px;
+}
+
+.category-box {
+  background-color: #555;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  flex: 1 1 calc(20% - 15px);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.category-box:hover {
+  transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

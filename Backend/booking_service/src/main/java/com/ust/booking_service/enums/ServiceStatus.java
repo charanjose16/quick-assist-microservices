@@ -1,5 +1,5 @@
 package com.ust.booking_service.enums;
 
 public enum ServiceStatus {
-    ACCEPTED,REJECTED, REQUESTED
+    ACCEPTED,REJECTED, REQUESTED, CANCELLED
 }

@@ -24,8 +24,8 @@
 .profile-container {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 5px;
-    background-color: rgba(7, 7, 7, 0.897); 
-    color: white;
+    background-color: rgba(7, 7, 7, 0.472); 
+    /* color: white; */
     border-width: 2px;
     border-color: rgba(138, 136, 136, 0.541);
   }
@@ -46,5 +46,5 @@
   }
   
   .form-label {
-    font-weight: bold;
+    /* font-weight: bold; */
   }

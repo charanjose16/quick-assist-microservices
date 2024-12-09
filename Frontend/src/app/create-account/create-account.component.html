@@ -1,11 +1,32 @@
-<div class="container text-center" >
-    <div class="row">
-        <div class="col">
-            <button (click)="userClicked()">
-                USER
-            </button>
-
-            <button (click)="workerClicked()">WORKER</button>
+<div class="choose-account-wrapper">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1 class="text-warning animate-slide-in">Join Us</h1>
+      <p class="text-light fs-4 animate-fade-in">
+        Choose how you'd like to be part of our community.
+      </p>
+      <div class="buttons-container">
+        <div class="account-option" (click)="userClicked()">
+          <div class="icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <h3 class="text-warning">Customer</h3>
+          <p class="text-light">
+            Explore services and book the best professionals for your needs.
+          </p>
+          <button class="btn btn-outline-warning">Join as Customer</button>
         </div>
+        <div class="account-option" (click)="workerClicked()">
+          <div class="icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3 class="text-warning">Worker</h3>
+          <p class="text-light">
+            Offer your expertise and grow your professional network.
+          </p>
+          <button class="btn btn-outline-warning">Join as Worker</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  

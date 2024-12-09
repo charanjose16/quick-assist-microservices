@@ -2,8 +2,6 @@
     /* background: url('images/black-bg2.jpg') no-repeat center center fixed;   */
     background-size: cover;
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     margin: 0;
 }
@@ -19,6 +17,17 @@
     filter: brightness(50%) ;  /* Adjust brightness and blur */
     z-index: -1;  /* Ensure it stays behind the content */
 }
+
+.no-bookings-message {
+    margin-top: 180px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffc107;
+    font-size: 1.1em;
+    text-align: center;
+  }
+  
 .card-body {
     background-color: rgba(7, 7, 7, 0.897); 
     color: white;/* Light gray color, adjust as needed */
@@ -45,3 +54,22 @@
   .ser-name-span{
       color: darkgoldenrod;
   }
+
+  .modal-content {
+    border: rgba(255, 255, 255, 0.616) solid 1px;
+    background-color: rgba(7, 7, 7, 0.95); /* Match theme */
+    /* color: white; */
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.7);
+  }
+  
+  .modal-title {
+    color: darkgoldenrod;
+    font-weight: bold;
+  }
+  
+  .modal-body p {
+    color: #ffc107; /* Golden text for emphasis */
+  }
+  
+  

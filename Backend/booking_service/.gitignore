@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Add this line to .gitignore
+application.properties
+
 ### STS ###
 .apt_generated
 .classpath

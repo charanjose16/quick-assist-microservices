@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BookingRequest } from '../model/BookingRequest';
 import { BookingRequestService } from '../service/bookingRequest/booking-request.service';
 import { UserHeaderComponent } from '../user-header/user-header.component';
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-workers-details',
   standalone: true,
-  imports: [UserHeaderComponent, CommonModule, RouterModule],
+  imports: [UserHeaderComponent, CommonModule, RouterModule, FormsModule,ReactiveFormsModule],
   templateUrl: './workers-details.component.html',
   styleUrl: './workers-details.component.css',
 })
@@ -22,11 +23,24 @@ export class WorkersDetailsComponent implements OnInit {
   workerCity: string = '';
   workerSpecialities: string[] = [];
   workerPrice: string = '';
+  dateTime: string = '';
+  wId: number = 0;
+  reviews: string[] = [];
+  bookingForm: FormGroup;  // Declare form group
+  
 
   constructor(
     private route: ActivatedRoute,
-    private bookingRequestService: BookingRequestService
-  ) {}
+    private bookingRequestService: BookingRequestService,
+    private router: Router,
+    private fb: FormBuilder  // Inject FormBuilder
+  ) {
+    // Initialize form group
+    this.bookingForm = this.fb.group({
+      dateTime: ['', Validators.required],
+      homeAddress: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.workerId = this.route.snapshot.queryParamMap.get('id') ?? '';
@@ -39,12 +53,21 @@ export class WorkersDetailsComponent implements OnInit {
     this.workerSpecialities =
       this.route.snapshot.queryParamMap.getAll('specialities') ?? [];
     this.workerPrice = this.route.snapshot.queryParamMap.get('price') ?? '';
+    const userId = Number(sessionStorage.getItem('userId')); // Replace with the actual worker ID
+
+    this.fetchReviews(Number(this.workerId));
+  }
+
+  getWorkerId(userId: number) {
+    this.bookingRequestService.getBookingByUserId(userId).subscribe((res) => {
+      this.wId = res.workerId;
+    });
   }
 
   createBookingRequest() {
     const userId = Number(sessionStorage.getItem('userId'));
 
-
+    console.log('Form Data:', this.bookingForm.value); // Log form data
 
     const bookingRequestObject: BookingRequest = {
       id: 0,
@@ -52,24 +75,39 @@ export class WorkersDetailsComponent implements OnInit {
       workerId: Number(this.workerId),
       paymentId: 0,
       serviceStatus: 'REQUESTED',
+      dateTime: this.bookingForm.value.dateTime,
+      homeAddress: this.bookingForm.value.homeAddress, // Correctly bind form data
     };
 
-    console.log(JSON.stringify(bookingRequestObject, null, 2) + ' vandhuchu');
+    console.log('Booking Request Object:', JSON.stringify(bookingRequestObject, null, 2));
 
     this.bookingRequestService.createBookingRequest(bookingRequestObject).subscribe(
       (response) => {
         console.log('Booking request created successfully:', response);
+        this.router.navigate(['/user-requests']);
       },
       (error) => {
         console.error('Error creating booking request:', error);
       }
     );
+  }
 
-  // this.sendSms();
+  proceedToBooking(form: any): void {
+    if (form.valid) {
+      console.log('Booking request sent with:', {
+        dateTime: this.dateTime,
+        price: this.workerPrice,
+      });
+      this.createBookingRequest();
+    } else {
+      console.log('Form is not valid');
+    }
+  }
 
-  }    
-
-
+  onDateTimeChange(value: string) {
+    console.log('Value on change:', value);
+    this.dateTime = value;
+  }
 
   sendSms() {
     const message = `Dear ${this.workerName}, 
@@ -79,11 +117,23 @@ You have received a new service request for ${this.workerExpertise}. Please chec
 Thank you,
 Quick Assist`;
 
-if (this.workerPhoneNumber?.trim()) {
-  const formattedPhoneNumber = '91' + this.workerPhoneNumber.trim(); // Handle country code
-  this.bookingRequestService.sendSms(formattedPhoneNumber, message).subscribe();
-} else {
-  alert('Invalid or missing phone number.');
-}
+    if (this.workerPhoneNumber?.trim()) {
+      const formattedPhoneNumber = '91' + this.workerPhoneNumber.trim(); // Handle country code
+      this.bookingRequestService.sendSms(formattedPhoneNumber, message).subscribe();
+    } else {
+      alert('Invalid or missing phone number.');
+    }
+  }
+
+  fetchReviews(wkrId: number): void {
+    this.bookingRequestService.getReviewsByWorkerId(wkrId).subscribe({
+      next: (reviews) => {
+        this.reviews = reviews;
+        console.log('Fetched reviews:', reviews);
+      },
+      error: (err) => {
+        console.error('Error fetching reviews:', err);
+      },
+    });
   }
 }

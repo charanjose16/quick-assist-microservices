@@ -10,61 +10,56 @@ import { User } from '../../model/User';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements OnInit {
+export class AuthService   {
+  baseUrl = 'http://localhost:8888';
+  username = '';
+  private user: User | undefined;
 
-  baseUrl = "http://localhost:8888";
-
-  username: string="";
- 
-  constructor(private httpClient:HttpClient, private router:Router) { }
-  
+  constructor(private httpClient: HttpClient, private router: Router) {}
 
   createUser(user: User): Observable<User> {
     return this.httpClient.post<User>(`${this.baseUrl}/api/v1/auth/signup`, user);
   }
 
-  login(user:any):Observable<LoginResponse>{
-    return this.httpClient.post<any>(`${this.baseUrl}/api/v1/auth/login`, user).pipe(
+  login(user: any): Observable<LoginResponse> {
+    return this.httpClient.post<LoginResponse>(`${this.baseUrl}/api/v1/auth/login`, user).pipe(
       tap(response => {
-        console.log('Login response from backend:', response); // Log the entire response to see what data is returned
-        this.username = response.userName;
-        this.initializeUser();
-        if (response.token && response.userName && response.role) {
-          console.log('Response contains token, username, and role');
+        if (response.token.jwt && response.userName && response.role) {
+          // sessionStorage.setItem('authToken', response.token.jwt);
+          sessionStorage.setItem('username', response.userName);
+          sessionStorage.setItem('role', response.role);
+          this.username = response.userName;
+          this.initializeUser();
+          console.log('Login successful:', response);
         } else {
-          console.error('One or more fields are missing in the response');
+          console.error('Invalid login response:', response);
         }
       })
     );
+    
   }
-  initializeUser() {
-    if (this.username) {
+
+  initializeUser(): void {
+    const storedUsername = sessionStorage.getItem('username');
+    if (storedUsername) {
+      this.username = storedUsername;
       this.fetchUserByUsername();
     } else {
-      console.warn('Username is not available during initialization.');
+      console.warn('No username found in session storage. User not initialized.');
     }
   }
 
-
-  getAllUsers() {
-    return this.httpClient.get<Array<User>>(`${this.baseUrl}/users/all`);
-  }
-
-
-  ngOnInit(){
-    
-  }
-  
-  private user: User  | undefined;
-  
-  
   fetchUserByUsername(): void {
+    if (!this.username) {
+      console.error('Cannot fetch user without a username.');
+      return;
+    }
+
     this.httpClient.get<User>(`${this.baseUrl}/users/getByUsername/${this.username}`).subscribe(
       (user) => {
         this.user = user;
         console.log('User fetched and stored:', this.user);
-  
-        // Set user ID in session storage
+
         if (this.user && this.user.id) {
           sessionStorage.setItem('userId', this.user.id.toString());
           console.log('User ID stored in session storage:', this.user.id);
@@ -78,10 +73,38 @@ export class AuthService implements OnInit {
     );
   }
 
-  
-  // Get the stored user data
-
   getUserByUsername(): User | undefined {
+    return this.user;
+  }
+
+  logout(): void {
+    this.httpClient.post<void>(`${this.baseUrl}/api/v1/auth/logout`, {}).subscribe(
+      () => {
+        this.clearSession();
+      },
+      (error) => {
+        console.error('Logout failed:', error);
+        this.clearSession();
+      }
+    );
+  }
+
+  private clearSession(): void {
+    sessionStorage.clear();
+    this.username = '';
+    this.user = undefined;
+    this.router.navigate(['/login']);
+  }
+
+  isLoggedIn(): boolean {
+    return !!sessionStorage.getItem('authToken');
+  }
+
+  getAuthToken(): string | null {
+    return sessionStorage.getItem('authToken');
+  }
+
+  getUserDetails(): User | undefined {
     return this.user;
   }
    

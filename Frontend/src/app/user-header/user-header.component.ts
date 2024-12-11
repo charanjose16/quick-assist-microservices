@@ -12,8 +12,8 @@ import { AuthService } from '../service/authService/auth.service';
 export class UserHeaderComponent {
  constructor(private authService: AuthService) {}
 
- clicked() {
-   console.log( this.authService.fetchUserByUsername());
-   alert( this.authService.getUserByUsername())
+ logout() {
+   this.authService.logout();
  }
+ 
 }

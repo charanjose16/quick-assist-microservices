@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../service/authService/auth.service';
 
 @Component({
   selector: 'app-worker-header',
@@ -8,6 +9,10 @@ import { RouterModule } from '@angular/router';
   templateUrl: './worker-header.component.html',
   styleUrl: './worker-header.component.css'
 })
-export class WorkerHeaderComponent {
+export class WorkerHeaderComponent{
 
+  constructor(private authService: AuthService) {}
+  logout() {
+    this.authService.logout();
+  }
 }

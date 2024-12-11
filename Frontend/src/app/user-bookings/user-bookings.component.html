@@ -2,25 +2,33 @@
   <app-user-header></app-user-header>
   <div class="container mt-5">
     <h2 class="text-center text-white mb-4" style="margin-top: 30px;">My Bookings</h2>
-    
+
     <!-- Show a message if no bookings are available -->
-    <div *ngIf="bookings.length === 0" class="text-center text-white no-bookings-message" >
+    <div *ngIf="bookings.length === 0" class="text-center text-white no-bookings-message">
       <p class="fs-4 fw-bold">No Bookings Available</p>
       <p class="fs-6">You haven’t made any bookings yet. Start booking a service now!</p>
     </div>
-    
+
     <!-- Display bookings if they exist -->
     <div class="row" *ngIf="bookings.length > 0">
       <div class="col-md-4 each-req-div" *ngFor="let booking of bookings">
-        <div class="card shadow-sm">
-          <div class="card-body" (click)="showWorkerDetails(booking.workerId)" data-bs-toggle="modal" data-bs-target="#workerDetailsModal">
-            <h5 class="card-title">Service Name: <span class="text-warning">{{ services[booking.workerId] }}</span></h5>
-            <p class="card-text">Worker Name: <span class="ser-name-span"> {{ workers[booking.workerId] }} </span></p>
-            <p class="card-text">
-              Booked Date : <span class="ser-name-span">{{ booking.date }} </span>
+        <div class="card shadow-sm position-relative">
+          <div 
+            class="card-body" 
+            (click)="showWorkerDetails(booking.workerId)" 
+            data-bs-toggle="modal" 
+            data-bs-target="#workerDetailsModal">
+            <h5 class="card-title">Service Name: 
+              <span class="text-warning">{{ services[booking.workerId] }}</span>
+            </h5>
+            <p class="card-text">Worker Name: 
+              <span class="ser-name-span">{{ workers[booking.workerId] }}</span>
             </p>
-            <p class="card-text">
-              Booked Time : <span class="ser-name-span"> {{ booking.time }}</span>
+            <p class="card-text">Booked For Date: 
+              <span class="ser-name-span">{{ dateStore[booking.id] }}</span>
+            </p>
+            <p class="card-text">Booked For Time: 
+              <span class="ser-name-span">{{ timeStore[booking.id] }}</span>
             </p>
             <p class="card-text">
               Booking Status: 
@@ -33,12 +41,40 @@
                 {{ booking.bookingStatus }}
               </span>
             </p>
+            <div class="booking-datetime">
+              <small>Booked on: </small>
+              <small>{{ booking.date }}, </small>
+              <small>Time: {{ booking.time }}</small>
+            </div>
+    
+            <!-- Conditionally display the "Review" button or "Review Submitted" message -->
+            <div class="review-section">
+              <!-- Conditionally show button only if a review hasn't been submitted -->
+              <button 
+                *ngIf="reviewMap[booking.id] === '' && booking.bookingStatus === 'COMPLETED'"
+                class="btn btn-warning mt-2" 
+                data-bs-toggle="modal" 
+                data-bs-target="#reviewModal" 
+                (click)="openReviewModal(booking.id)">
+                Leave a Review
+              </button>
+                        
+              <!-- Display 'Review Submitted' only if review exists -->
+              <span *ngIf="reviewMap[booking.id] !== '' && booking.bookingStatus === 'COMPLETED'" class="text-success mt-2">
+                Review Submitted
+              </span>
+            </div>            
+            
           </div>
         </div>
       </div>
     </div>
+    
   </div>
 </div>
+
+
+
 
 
 <!-- Worker Details Modal -->
@@ -71,6 +107,40 @@
           type="button" 
           class="btn btn-primary" 
           data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Review Modal -->
+<div 
+  class="modal fade" 
+  id="reviewModal" 
+  tabindex="-1" 
+  aria-labelledby="reviewModalLabel" 
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModalLabel">Submit Review</h5>
+        <button 
+          type="button" 
+          class="btn-close" 
+          data-bs-dismiss="modal" 
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <textarea 
+          [(ngModel)]="reviewText" 
+          class="form-control" 
+          placeholder="Write your review here"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button 
+          type="button" 
+          class="btn btn-primary" 
+          (click)="submitReview()">Submit</button>
       </div>
     </div>
   </div>

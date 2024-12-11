@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { UserHeaderComponent } from '../user-header/user-header.component';
 
 @Component({
@@ -9,6 +9,18 @@ import { UserHeaderComponent } from '../user-header/user-header.component';
   templateUrl: './user-homepage.component.html',
   styleUrl: './user-homepage.component.css'
 })
-export class UserHomepageComponent {
+export class UserHomepageComponent  implements OnInit{
+  ngOnInit(): void {
+    const reloadCount = Number(sessionStorage.getItem('reloadCount')) || 0;
+  
+    if (reloadCount < 1) { // Reload only up to 2 times
+      sessionStorage.setItem('reloadCount', (reloadCount + 1).toString());
+      window.location.reload();
+    } else {
+      console.log('Reloads limit reached');
+    }
+  }
+  
 
+ 
 }

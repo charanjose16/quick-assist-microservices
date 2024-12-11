@@ -1,34 +1,28 @@
-/* General Layout */
-.main-div {
+.main-div{
+    /* background: url('images/black-bg2.jpg') no-repeat center center fixed;   */
     background-size: cover;
     display: flex;
-    justify-content: flex-start; /* Align child elements directly under the header */
     height: 100vh;
     margin: 0;
-  }
-  
-  .main-div::before {
+}
+.main-div::before {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('images/black-bg2.jpg') no-repeat center center fixed;
+    background: url('images/black-bg2.jpg') no-repeat center center fixed;  /* Background image for blur effect */
     background-size: cover;
-    filter: brightness(50%) ; /* Added a slight blur for enhanced effect */
-    z-index: -1;
-  }
-
-
-  
-  /* Cards and Styling */
-  .card-body {
+    filter: brightness(50%) ;  /* Adjust brightness and blur */
+    z-index: -1;  /* Ensure it stays behind the content */
+}
+.card-body {
     background-color: rgba(7, 7, 7, 0.897);
     color: white;
     border-radius: 5px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 380px;
+    height: 150px;
   }
   
   .card-body:hover {
@@ -58,13 +52,3 @@
       margin-bottom: 20px;
     }
   }
-
-  .booking-datetime {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    text-align: right;
-    font-size: 0.8rem;
-    color: #6c757d; /* Subtle gray color for text */
-  }
-  

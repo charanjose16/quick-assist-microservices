@@ -24,7 +24,7 @@
     background-color: #f8f9fa;
     color: #333;
     color: white;
-    height: 250px;
+    height: 330px;
   }
   .card-body{
     transition: transform 0.2s;
@@ -41,7 +41,7 @@
   }
   
   .badge {
-    font-size: 0.9rem;
+    font-size: 0.75rem;
   }
   
   .btn-sm {

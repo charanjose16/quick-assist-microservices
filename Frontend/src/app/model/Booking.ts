@@ -9,5 +9,6 @@ export interface Booking{
     date: string,
     time: string,
     serviceId:number,
-    paymentId:number
+    paymentId:number,
+    verifyCode:string
 }

@@ -10,5 +10,6 @@ export interface User {
     city: string,
     price:number,
     expertise: string,
-    specialties: string[]
+    specialties: string[],
+    profilePic?: string;
 }

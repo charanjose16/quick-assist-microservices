@@ -4,4 +4,6 @@ export interface BookingRequest{
     workerId:number,
     paymentId:number,
     serviceStatus:string,
+    dateTime: string,
+    homeAddress:string
 }

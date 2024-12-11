@@ -38,7 +38,10 @@ public class ServiceRequestController {
         return serviceRequestService.updateServiceRequestStatus(serviceRequestId,requestStatus);
     }
 
-
+    @GetMapping("/services/{id}")
+    public ServiceRequest getServiceById(@PathVariable int id) {
+        return serviceRequestService.getServiceById(id);
+    }
 
 
 }

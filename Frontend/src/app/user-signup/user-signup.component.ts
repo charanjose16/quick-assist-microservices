@@ -16,6 +16,8 @@ import { AuthService } from '../service/authService/auth.service';
 export class UserSignupComponent implements OnInit {
 
   signupForm: FormGroup;
+  selectedFile: File | null = null;
+  isFileTouched = false;
 
   constructor(private fb: FormBuilder, private addService: AuthService,private router:Router, private route:ActivatedRoute) {
     this.signupForm = this.fb.group({

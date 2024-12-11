@@ -31,4 +31,5 @@ public class Booking {
     private String time;
     private int serviceId;
     private int paymentId;
+    private String verifyCode;
 }

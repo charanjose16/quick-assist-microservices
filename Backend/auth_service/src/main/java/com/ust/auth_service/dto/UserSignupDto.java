@@ -1,5 +1,6 @@
 package com.ust.auth_service.dto;
 
+import jakarta.persistence.Lob;
 import lombok.Data;
 
 import java.util.List;

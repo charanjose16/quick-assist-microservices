@@ -1,15 +1,42 @@
+
+  
+  /* Reviews Box */
+  .reviews-box {
+    margin-top: 40px;
+    margin-bottom: 60px;
+      margin-left: 13%;
+    width: 1200px;
+    flex: 0 0 35%;
+    height: 100%;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.315);
+    border-radius: 10px;
+    background-color: rgba(7, 7, 7, 0.9);
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Profile Image */
+  .profile-img img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+ /* Main Container */
 .main-div {
-    /* Full viewport background settings */
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align items to the top but leave space */
-    height: 100vh;
+    align-items: flex-start;
+    height: 50vh;
     margin: 0;
-    padding-top: 100px; /* Add padding to create space between the header and cards */
-}
-
-.main-div::before {
+    padding-top: 30px;
+  }
+  
+  .main-div::before {
     content: '';
     position: fixed;
     top: 0;
@@ -20,35 +47,19 @@
     background-size: cover;
     filter: brightness(50%);
     z-index: -1;
-}
-
-  /* Profile container layout */
+  }
+  
+  /* Profile Container */
   .profile-container {
     display: flex;
     width: 100%;
     max-width: 1200px;
-    height: 80vh; /* Full vertical height */
     gap: 20px;
-    margin-top: 30px;
   }
   
-  /* Details Box */
+  /* Details Box (Left Section) */
   .details-box {
-    flex: 0 0 65%; /* 65% horizontal width */
-    height: 100%; /* Full vertical height */
-    padding: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.315);
-    border-radius: 10px;
-    background-color: rgba(7, 7, 7, 0.9);
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow-y: auto; /* Enable scrolling if content overflows */
-  }
-  
-  /* Reviews Box */
-  .reviews-box {
-    flex: 0 0 35%; /* 35% horizontal width */
-    height: 100%; /* Full vertical height */
+    flex: 1;
     padding: 20px;
     border: 2px solid rgba(255, 255, 255, 0.315);
     border-radius: 10px;
@@ -57,28 +68,68 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Worker Image */
+  .right-box {
+    flex: 0 0 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  /* Profile Image */
   .profile-img img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Expertise List */
-  .expertise-list {
+  /* Worker Info */
+  .worker-info h3 {
+    font-size: 1.8rem;
+    /* font-weight: bold; */
+  }
+  
+  .worker-info p {
+    margin: 5px 0;
+    font-size: 1.1rem;
+  }
+  
+  /* Expertise and Specialties Section */
+  .expertise-specialties-section h4 {
+    font-size: 1.4rem;
+    /* font-weight: bold; */
+  }
+  
+  .expertise-list,
+  .specialties-list {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
   
-  .expertise-list li {
+  .expertise-list li,
+  .specialties-list li {
     margin-bottom: 10px;
+    font-size: 1rem;
   }
   
-  /* Booking Button */
+  /* Booking Section */
+  .worker-price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .worker-price span {
+    color: #28a745;
+  }
+  
+  /* Request Button */
   .request-btn {
-    /* background-color: #007bff; */
-    color:black;
+    color: black;
     border: black;
     padding: 10px 20px;
     border-radius: 5px;
@@ -87,34 +138,21 @@
   
   .request-btn:hover {
     background-color: white;
-    
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
-  /* Reviews List Box */
+  
+  /* Reviews List */
   .reviews-list-box {
     margin-top: 30px;
-    max-height: calc(100% - 40px); /* Leave room for the title */
-    overflow-y: auto; /* Enable vertical scrolling for reviews */
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
     border: 1px solid rgba(221, 221, 221, 0.192);
     border-radius: 5px;
     background-color: #27232352;
   }
   
-  /* Reviews List Items */
-  .reviews-list {
-    list-style: none;
-    margin-top: 20px;
+  .reviews-list li {
+    margin-bottom: 20px;
   }
   
-  .reviews-list li {
-    margin-bottom: 30px;
-  }
-  .worker-price {
-    flex: 0 0 150px;
-    text-align: right;
-    font-size: 16px;
-}
-.worker-price span {
-    font-weight: bold;
-    color: #28a745;
-}

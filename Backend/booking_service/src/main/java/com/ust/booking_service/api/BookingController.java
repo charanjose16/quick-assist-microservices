@@ -6,6 +6,8 @@ import com.ust.booking_service.model.Booking;
 import com.ust.booking_service.service.BookingServiceImpl;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,5 +59,32 @@ public class BookingController {
     public void deleteBooking(@PathVariable int id){
         bookingService.deleteBooking(id);
     }
+
+
+    @PostMapping("/addReview")
+    public void addReview(@RequestBody ReviewPayload payload) {
+        bookingService.updateWorkerReview(payload.getBookingId(), payload.getReview());
+    }
+
+    @GetMapping("/getReviewById/{id}")
+    public ResponseEntity<String> getReviewById(@PathVariable int id) {
+        String review = bookingService.getReviewById(id);
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_PLAIN)
+                .body(review);
+    }
+
+
+
+    @GetMapping("/reviews/{workerId}")
+    public List<String> getReviewsByWorkerId(@PathVariable int workerId) {
+        return bookingService.getReviewsByWorkerId(workerId);
+    }
+
+    @GetMapping("/BookingByUserId/{userId}")
+    public Booking getBookingByUserId(@PathVariable int userId){
+        return bookingService.getBookingByUser(userId);
+    }
+
 
 }

@@ -32,6 +32,8 @@
     background-color: rgba(7, 7, 7, 0.897); 
     color: white;/* Light gray color, adjust as needed */
     border-radius: 5px;
+    padding-bottom: 30px;
+    height: 290px;
   }
   .each-req-div{
       margin-top: 30px;
@@ -72,4 +74,26 @@
     color: #ffc107; /* Golden text for emphasis */
   }
   
+  .booking-datetime {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    text-align: right;
+    font-size: 0.8rem;
+    color: #6c757d; /* Subtle gray color for text */
+  }
+  
+  .modal-body textarea {
+    resize: none;
+    font-size: 1rem;
+  }
+  
+  .modal-body input {
+    width: 100px;
+    margin: 0 auto;
+  }
+  
+  .modal-footer button {
+    width: 100%;
+  }
   

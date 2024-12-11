@@ -1,13 +1,11 @@
 package com.ust.booking_service.service;
 
-import com.ust.booking_service.dto.BookingDTO;
 import com.ust.booking_service.enums.BookingStatus;
 import com.ust.booking_service.model.Booking;
 import com.ust.booking_service.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Book;
 import java.util.List;
 
 @Service
@@ -24,6 +22,7 @@ public class BookingServiceImpl{
     }
 
     public Booking findBookingById(int id) {
+
         return bookingRepository.findById(id).orElse(null);
     }
 
@@ -55,4 +54,33 @@ public class BookingServiceImpl{
         return bookingRepository.findAllByWorkerId(userId);
     }
 
+    public void updateWorkerReview(int bookingId, String review) {
+        // Find the service request by ID
+        Booking booking = bookingRepository.findById(bookingId).orElse(null);
+
+        if (booking == null) {
+            throw new IllegalArgumentException("Service request not found with ID: " + bookingId);
+        }
+
+        // Update the review and rating
+        booking.setReview(review);
+
+        // Save and return the updated service request
+         bookingRepository.save(booking);
+    }
+
+    public String getReviewById(int bookingId) {
+        return bookingRepository.findById(bookingId)
+                .map(Booking::getReview)
+                .orElse(""); // Return empty string if no review exists
+    }
+
+    public List<String> getReviewsByWorkerId(int workerId){
+        return bookingRepository.findReviewsByWorkerId(workerId);
+    }
+
+
+    public Booking getBookingByUser(int userId) {
+        return bookingRepository.findByUserId(userId);
+    }
 }

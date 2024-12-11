@@ -15,6 +15,8 @@ export class WorkersListComponent implements OnInit{
 
   profession: string | null = '';
   workers: any[] = [];
+  filteredWorkers: any[] = [];
+  uniqueCities: string[] = [];
 
   constructor(private route: ActivatedRoute,private getWorkersByProfession:GetWorkersByProfessionService) {}
 
@@ -27,16 +29,29 @@ export class WorkersListComponent implements OnInit{
 
   }
 
-fetchWorkers(profession: string): void {
+  fetchWorkers(profession: string): void {
     this.getWorkersByProfession.getWorkersByProfession(profession).subscribe(
       (response) => {
         this.workers = response;
-        console.log('Workers fetched:', this.workers);
+        this.filteredWorkers = response; // Initially show all workers
+        this.extractUniqueCities();
       },
       (error) => {
         console.error('Error fetching workers:', error);
       }
     );
+  }
+
+  extractUniqueCities(): void {
+    const cities = this.workers.map(worker => worker.city);
+    this.uniqueCities = Array.from(new Set(cities)); // Remove duplicates
+  }
+
+  onCityFilterChange(event: Event): void {
+    const selectedCity = (event.target as HTMLSelectElement).value;
+    this.filteredWorkers = selectedCity
+      ? this.workers.filter(worker => worker.city === selectedCity)
+      : this.workers; // Show all workers if no city is selected
   }
 
 

@@ -17,6 +17,9 @@
               Service Name : <span class="text-warning">{{ services[request.workerId] }}</span>
             </h5>
             <p class="card-text">Worker Name : {{ workers[request.workerId] }}</p>
+            <p class="card-text">Booking For Date : {{ bookedForDate }}</p>
+            <p class="card-text">Booked For Time: {{bookedForTime}}</p>
+            
             <p class="card-text">
               Request Status : 
               <span class="badge" 
@@ -44,6 +47,8 @@
                 (click)="payNow(request)">Pay Now
               </button>
 
+
+              <p></p>
                 <button 
                   *ngIf="paymentStatusMap[request.id] === 'COMPLETED'" 
                   class="btn btn-outline-secondary btn-sm" 

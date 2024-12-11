@@ -42,6 +42,7 @@ export class LoginPageComponent {
           sessionStorage.setItem('username', username);
           sessionStorage.setItem('role', role);
 
+
           // Navigate to the homepage or dashboard
           if(role === "ROLE_USER")
             this.router.navigate(['/user-homepage']);

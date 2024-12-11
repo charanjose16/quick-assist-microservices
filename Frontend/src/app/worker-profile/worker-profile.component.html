@@ -28,6 +28,7 @@
                   type="email"
                   id="email"
                   class="form-control"
+                  
                   [(ngModel)]="email"
                   name="email"
                 />
@@ -52,6 +53,7 @@
                   type="text"
                   id="city"
                   class="form-control"
+                  
                   [(ngModel)]="city"
                   name="city"
                 />
@@ -67,6 +69,18 @@
                   [(ngModel)]="expertise"
                   name="expertise"
                   disabled
+                />
+              </div>
+
+                <!-- Price Per Hour -->
+              <div class="mb-3">
+                <label for="price" class="form-label text-warning">Price</label>
+                <input
+                  type="number"
+                  id="price"
+                  class="form-control text-muted"
+                  [(ngModel)]="price"
+                  name="price" 
                 />
               </div>
   

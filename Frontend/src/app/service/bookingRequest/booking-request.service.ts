@@ -12,6 +12,7 @@ import { AuthService } from '../authService/auth.service';
   providedIn: 'root'
 })
 export class BookingRequestService  {
+ 
 
   baseUrl="http://localhost:8888"
 
@@ -80,10 +81,41 @@ export class BookingRequestService  {
       params: { phoneNumber, message },
     });
   }
+
+  updateUserProfile(userId: number, updates: any) {
+    return this.httpClient.put(`${this.baseUrl}/users/update/${userId}`, updates);
+  }
+  
   
 
+  getServiceRequestById(id: number): Observable<BookingRequest> {
+    return this.httpClient.get<BookingRequest>(`${this.baseUrl}/serviceRequest//services/${id}`)
+  }
 
 
+  submitReview(reviewPayload: { bookingId: number; review: string; }): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/booking/addReview`, reviewPayload);
+  }
+  
+  getReviewByBookingId(bookingId:number):Observable<any>{
+    return this.httpClient.get(`${this.baseUrl}/booking/getReviewById/${bookingId}`);
+  }
+
+  
+  getReviewsByWorkerId(workerId: number): Observable<string[]> {
+    const url = `${this.baseUrl}/booking/reviews/${workerId}`;
+    return this.httpClient.get<string[]>(url);
+  }
+
+  getBookingByUserId(userId: number): Observable<Booking> {
+    const url = `${this.baseUrl}/booking/BookingByUserId/${userId}`;
+    return this.httpClient.get<Booking>(url);
+  }
+
+  fetchBookingById(bookingId: number): Observable<Booking> {
+    return this.httpClient.get<Booking>(`${this.baseUrl}/booking/${bookingId}`);
+  }
+ 
 
  }
 

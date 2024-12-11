@@ -39,4 +39,11 @@ public class ServiceRequestService {
 
 
 
+    public ServiceRequest getServiceById(int id) {
+        return serviceRequestRepository.findById(id).orElse(null);
+    }
+
+
+
+
 }

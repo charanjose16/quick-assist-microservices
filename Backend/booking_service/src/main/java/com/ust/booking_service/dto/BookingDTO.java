@@ -25,6 +25,7 @@ public class BookingDTO {
     private LocalTime time;
     private int serviceId;
     private int paymentId;
+    private String verifyCode;
 
     public Booking convertToEntity() {
         Booking booking = new Booking();
@@ -32,9 +33,10 @@ public class BookingDTO {
         booking.setUserId(this.userId);
         booking.setWorkerId(this.workerId);
         booking.setBookingStatus(this.bookingStatus);
-//        booking.setReview(this.review);
+        booking.setReview(this.review);
         booking.setServiceId(this.serviceId);
         booking.setPaymentId(this.paymentId);
+        booking.setVerifyCode(this.verifyCode);
         return booking;
     }
 
@@ -45,9 +47,10 @@ public class BookingDTO {
         bookingDTO.setUserId(booking.getUserId());
         bookingDTO.setWorkerId(booking.getWorkerId());
         bookingDTO.setBookingStatus(booking.getBookingStatus());
-//        bookingDTO.setReview(booking.getReview());
+        bookingDTO.setReview(booking.getReview());
         bookingDTO.setServiceId(bookingDTO.serviceId);
         bookingDTO.setPaymentId(bookingDTO.paymentId);
+        bookingDTO.setVerifyCode(bookingDTO.verifyCode);
         return bookingDTO;
     }
 }

@@ -17,11 +17,15 @@
                 <a class="nav-link" routerLink="/worker-bookings">Bookings</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" routerLink="/worker-reviews">My Reviews</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" routerLink="/worker-profile">My profile</a>
               </li>
+             
               <!-- Logout Button -->
               <li class="nav-item" style="margin-left: 40px;">
-                <button class="btn btn-danger ms-3" id="logoutButton" style="background-color: rgba(221, 9, 9, 0.856);">Logout</button>
+                <button (click)="logout()" class="btn btn-danger ms-3" id="logoutButton" style="background-color: rgba(221, 9, 9, 0.856);">Logout</button>
               </li>
             </ul>
           </div>

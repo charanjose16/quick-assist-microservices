@@ -1,0 +1,26 @@
+<div class="main-div">
+    <app-worker-header></app-worker-header>
+  
+    <div class="container mt-4">
+      <h2 class="text-center text-white mb-4" style="margin-top: 60px;">My Reviews</h2>
+  
+      <!-- Show a message if no reviews are available -->
+      <div *ngIf="reviews.length === 0" class="text-center text-white">
+        <p class="fs-4 fw-bold">No reviews available yet!</p>
+      </div>
+  
+      <!-- Display reviews -->
+      <div *ngIf="reviews.length > 0" class="row">
+        <div class="col-md-4" *ngFor="let review of reviews">
+          <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title text-warning">Review by: <span class="text-white">{{ review.customerName }}</span></h5>
+              <p class="card-text"><strong>Feedback:</strong> {{ review.feedback }}</p>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

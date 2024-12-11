@@ -30,7 +30,13 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
   selectedDuration: number = 1;
   currentRequest: any = null;
 
+  bookedForDate: string ="";
+  bookedForTime: string ="";
+
   private pollingSubscription!: Subscription;
+  userName:string='';
+  phoneNumber: string='';
+  expertise:string='';
 
   constructor(private bookingRequestService: BookingRequestService, private cdRef: ChangeDetectorRef) {}
 
@@ -44,7 +50,7 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
       this.getAllBookingsByUserId(userId);
 
       // Start polling every 5 seconds
-      this.pollingSubscription = interval(5000).subscribe(() => {
+      this.pollingSubscription = interval(2000).subscribe(() => {
         this.pollForUpdates(userId);
       });
     }
@@ -58,11 +64,11 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
 
   getAllBookingsByUserId(id: number): void {
     console.log("heh habaiuiu");
-    
     this.bookingRequestService.getAllBookingRequestsByUserId(id).subscribe(
       (response) => {
         this.requests = response;
         this.updateRequestDetails(this.requests);
+
       },
       (error) => {
         console.error('Error fetching booking requests:', error);
@@ -73,14 +79,19 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
   pollForUpdates(userId: number): void {
     this.bookingRequestService.getAllBookingRequestsByUserId(userId).subscribe(
       (response) => {
-        const newRequests = response.filter(
-          (newRequest) => !this.requests.some((existingRequest) => existingRequest.id === newRequest.id)
-        );
-        if (newRequests.length > 0) {
-          this.requests.push(...newRequests); // Add new requests
-          this.updateRequestDetails(newRequests);
-          this.cdRef.detectChanges(); // Ensure the UI reflects changes
-        }
+        response.forEach((newRequest) => {
+          const existingRequestIndex = this.requests.findIndex((req) => req.id === newRequest.id);
+  
+          if (existingRequestIndex === -1) {
+            // Add new request if not already present
+            this.requests.push(newRequest);
+            this.updateRequestDetails([newRequest]);
+          } else {
+            // Update existing request if necessary
+            this.requests[existingRequestIndex] = { ...this.requests[existingRequestIndex], ...newRequest };
+          }
+        });
+        this.cdRef.detectChanges(); // Ensure UI reflects changes
       },
       (error) => {
         console.error('Error polling for updates:', error);
@@ -88,15 +99,34 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
     );
   }
   
+  
 
   updateRequestDetails(requestsToUpdate: BookingRequest[]): void {
     requestsToUpdate.forEach((request) => {
       this.fetchServiceName(request.workerId);
       this.fetchWorkerById(request.workerId);
       this.fetchPaymentStatus(request.id);
+      this.fetchRequestedDateTime(request.id);
     });
     this.cdRef.detectChanges();
   }
+
+  fetchRequestedDateTime(id: number) {
+    this.bookingRequestService.getServiceRequestById(id).subscribe(res => {
+      const dateTimeString = res.dateTime;
+  
+      if (dateTimeString) {
+        const dateObj = new Date(dateTimeString);
+        this.bookedForDate = dateObj.toISOString().split('T')[0]; // Extract date part
+        this.bookedForTime = dateObj.toTimeString().split(' ')[0]; // Extract time part
+        console.log(this.bookedForDate +" "+this.bookedForTime);
+        
+      } else {
+        console.error('No dateTime received');
+      }
+    });
+  }
+  
 
   fetchServiceName(serviceId: number): void {
     this.bookingRequestService.getUserById(serviceId).subscribe((res) => {
@@ -128,18 +158,20 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
       }
     );
   }
-
   cancelRequest(request: any): void {
     this.bookingRequestService.updateServiceRequestStatus(request.id, 'CANCELLED').subscribe(
       () => {
-        request.status = 'CANCELLED';
-        this.pollForUpdates(Number(sessionStorage.getItem('userId')));
+        // Update the request object locally to reflect the change
+        request.serviceStatus = 'CANCELLED';
+        this.cdRef.detectChanges(); 
+        this.pollForUpdates(Number(sessionStorage.getItem('userId')));// Trigger Angular to update the view
       },
       (error) => {
         console.error('Error cancelling request:', error);
       }
     );
   }
+  
 
   payNow(request: any): void {
     this.currentRequest = request;
@@ -180,7 +212,8 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
 
     this.bookingRequestService.createPayment(paymentObject).subscribe((paymentResponse) => {
       const paymentId = paymentResponse.id;
-      this.createBooking(userId, request.workerId, request.id, paymentId);
+      const verifyCodes = (Math.floor(100000 + Math.random() * 900000)).toString();
+      this.createBooking(userId, request.workerId, request.id, paymentId,verifyCodes);
       this.paymentStatusMap[request.id] = 'COMPLETED';
       this.cdRef.detectChanges();
       this.notifyWorker(
@@ -196,10 +229,33 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
     });
   }
 
-  createBooking(userId: number, workerId: number, serviceId: number, paymentId: number): void {
+  createBooking(userId: number, workerId: number, serviceId: number, paymentId: number,verifyCode:string): void {
     const now = new Date();
     const formattedDate = now.toISOString().split('T')[0];
     const formattedTime = now.toTimeString().split(' ')[0];
+    
+    
+    this.bookingRequestService.getUserById(userId).subscribe(res=>{
+      this.userName=res.name;
+      this.phoneNumber=res.phoneNumber;
+
+
+      this.bookingRequestService.getUserById(workerId).subscribe(res=>{
+        this.expertise=res.expertise
+
+      // ----------------------------------send SMs
+      // this.sendSms(this.userName,this.phoneNumber,this.expertise,verifyCode)
+      console.log(this.phoneNumber);
+      
+    })
+
+    
+    })
+    
+    
+
+    
+
 
     const bookingObject: Booking = {
       id: 0,
@@ -211,7 +267,14 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
       time: formattedTime,
       serviceId: serviceId,
       paymentId: paymentId,
+      verifyCode:verifyCode
     };
+
+    
+
+
+
+
 
     this.bookingRequestService.createBooking(bookingObject).subscribe(
       (bookingResponse) => {
@@ -222,6 +285,33 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
       }
     );
   }
+
+
+
+
+  
+
+  sendSms(userName:string,phoneNumber:string,expertise:string,verifyCode:string) {
+    const message = `Dear ${this.userName}, 
+
+
+    Your booking for ${expertise} has been successfully confirmed!  
+    
+    Please use the following verification code during the service: ${verifyCode}.  
+    
+    Thank you for choosing Quick Assist. If you have any questions, feel free to reach out to us.
+    
+    Best regards,  
+    Quick Assist`;
+
+if (this.phoneNumber?.trim()) {
+  const formattedPhoneNumber = '91' + this.phoneNumber.trim(); // Handle country code
+  this.bookingRequestService.sendSms(formattedPhoneNumber, message).subscribe();
+} else {
+  alert('Invalid or missing phone number.');
+}
+  }
+
 
   notifyWorker(workerId: number, message: string): void {
     console.log(`Notifying worker ${workerId}: ${message}`);

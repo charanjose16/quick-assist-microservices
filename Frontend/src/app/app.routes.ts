@@ -14,6 +14,7 @@ import { WorkerBookingsComponent } from './worker-bookings/worker-bookings.compo
 import { WorkerProfileComponent } from './worker-profile/worker-profile.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { WorkerReviewsComponent } from './worker-reviews/worker-reviews.component';
 
 export const routes: Routes = [
     {path:"",component:LandingPageComponent},
@@ -30,7 +31,8 @@ export const routes: Routes = [
 {path:"worker-homepage",component:WorkerHomepageComponent},
 {path:"worker-requests",component:WorkerRequestsComponent},
 {path:"worker-bookings",component:WorkerBookingsComponent},
-{path:"worker-profile",component:WorkerProfileComponent}
+{path:"worker-profile",component:WorkerProfileComponent},
+{path:"worker-reviews", component: WorkerReviewsComponent}
 ];
 
 

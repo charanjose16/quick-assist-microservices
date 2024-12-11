@@ -32,4 +32,5 @@ public class UserModel {
     private String expertise;
     private List<String> specialities;
 
+
 }

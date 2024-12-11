@@ -1,7 +1,9 @@
 package com.ust.auth_service.service;
 
+import com.ust.auth_service.client.UserServiceClient;
 import com.ust.auth_service.dto.JwtToken;
 import com.ust.auth_service.dto.UserCredentials;
+import com.ust.auth_service.repository.UserRepository;
 import com.ust.auth_service.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,10 @@ public class AuthenticationService {
 
     @Autowired
     AuthenticationManager authenticationManager;
+
+
+
+
 
     @Autowired
     JwtUtil jwtUtil;

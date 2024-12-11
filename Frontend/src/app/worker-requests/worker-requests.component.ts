@@ -19,9 +19,17 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
   services: { [key: number]: string } = {};
   users: { [key: number]: string } = {};
   addresses: { [key: number]: string } = {};
+  homeAddresses: { [key: number]: string } = {};
   custName:string='';
   custPhone:string='';
   workExp:string='';
+
+  serviceId: string =';'
+
+
+  
+  bookedForDate: string ="";
+  bookedForTime: string ="";
 
   private pollingSubscription!: Subscription;
 
@@ -51,8 +59,26 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
       (response) => {
         this.requests = response;
         this.updateRequestDetails(this.requests);
+
       }
     );
+  }
+
+  
+  fetchRequestedDateTime(id: number) {
+    this.bookingRequestService.getServiceRequestById(id).subscribe(res => {
+      const dateTimeString = res.dateTime;
+  
+      if (dateTimeString) {
+        const dateObj = new Date(dateTimeString);
+        this.bookedForDate = dateObj.toISOString().split('T')[0]; // Extract date part
+        this.bookedForTime = dateObj.toTimeString().split(' ')[0]; // Extract time part
+        console.log(this.bookedForDate +" "+this.bookedForTime);
+        
+      } else {
+        console.error('No dateTime received');
+      }
+    });
   }
 
   pollForUpdates(workerId: number): void {
@@ -72,12 +98,38 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
 
   updateRequestDetails(requestsToUpdate: BookingRequest[]): void {
     requestsToUpdate.forEach((request) => {
+      const serviceId = request.id; // Use the unique service request ID
+      const userId = request.userId; // Use the userId to map addresses
       this.fetchServiceName(request.workerId);
-      this.fetchUserById(request.userId);
-      this.fetchAddressByUserId(request.userId);
+      this.fetchUserById(userId);
+      this.fetchAddressByUserId(userId);
+      this.fetchRequestedDateTime(serviceId);
+      this.fetchHomeAddress(serviceId, userId); // Ensure correct serviceId and userId are passed
     });
     this.cdRef.detectChanges();
   }
+  
+
+  fetchHomeAddress(serviceId: number, userId: number): void {
+    this.bookingRequestService.getServiceRequestById(serviceId).subscribe(
+      (res) => {
+        if (res && res.homeAddress) {
+          // Store home address for the specific userId
+          this.homeAddresses[serviceId] = res.homeAddress;
+        } else {
+          // Fallback if home address is not available
+          this.homeAddresses[serviceId] = 'Home address not available';
+        }
+        this.cdRef.detectChanges(); // Trigger change detection to update UI
+      },
+      (error) => {
+        console.error(`Error fetching home address for serviceId ${serviceId}:`, error);
+        this.homeAddresses[userId] = 'Error fetching home address'; // Fallback in case of error
+        this.cdRef.detectChanges();
+      }
+    );
+  }
+  
 
   fetchServiceName(serviceId: number): void {
     this.bookingRequestService.getUserById(serviceId).subscribe((res) => {
@@ -100,6 +152,7 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
   fetchAddressByUserId(userId: number): void {
     this.bookingRequestService.getUserById(userId).subscribe((res) => {
       this.addresses[userId] = res.address;
+      
       this.cdRef.detectChanges();
     });
   }

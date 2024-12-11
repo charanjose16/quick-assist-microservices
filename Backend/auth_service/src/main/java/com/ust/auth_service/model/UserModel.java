@@ -26,4 +26,6 @@ public class UserModel {
     private String city;
     private String expertise;
     private List<String> specialities;
+
+
 }

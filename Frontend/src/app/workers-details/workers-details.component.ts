@@ -93,7 +93,7 @@ export class WorkersDetailsComponent implements OnInit {
 
 // --------------------------------------send sms
 
-    //  this.sendSms();
+     this.sendSms();
 
 
 

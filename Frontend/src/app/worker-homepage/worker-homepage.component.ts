@@ -42,7 +42,7 @@ export class WorkerHomepageComponent implements OnInit {
      
       const reloadCount = Number(sessionStorage.getItem('reloadCount')) || 0;
     
-      if (reloadCount < 2) { // Reload only up to 2 times
+      if (reloadCount < 1) { // Reload only up to 2 times
         sessionStorage.setItem('reloadCount', (reloadCount + 1).toString());
         window.location.reload();
       } else {

@@ -31,6 +31,9 @@
     
   }
   
+  .ser-name-span{
+    color: darkgoldenrod;
+}
   .card-body:hover {
     transform: scale(1.02);
     box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829); /* Add a shadow effect */

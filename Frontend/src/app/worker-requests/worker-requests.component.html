@@ -15,17 +15,17 @@
         <div class="col-md-4 each-req-div" *ngFor="let request of requests">
           <div class="card shadow-sm">
             <div class="card-body" style="height: 220px;">
-              <h5 class="card-title">Customer Name: <span class="text-warning">{{ users[request.userId] }}</span></h5>
+              <h5 class="card-title">Customer Name : <span class="text-warning"> {{ users[request.userId] }}</span></h5>
               <p class="card-text">
-                <strong>Service Required:</strong> {{ services[request.workerId] }}
+                <strong>Service Required :</strong> <span class="ser-name-span"> {{ services[request.workerId] }}</span>
               </p>
-              <p class="card-text">Booking For Date : {{ bookedForDate }}</p>
-                <p class="card-text">Booked For Time : {{bookedForTime}}</p>
+              <p class="card-text"><strong>Booking For Date :</strong><span class="ser-name-span"> {{ dateStore[request.id] }}</span></p>
+                <p class="card-text"><strong>Booked For Time :</strong><span class="ser-name-span"> {{timeStore[request.id]}}</span></p>
               <p class="card-text">
-                <strong>City:</strong> {{ addresses[request.userId] }}
+                <strong>City :</strong> <span class="ser-name-span"> {{ addresses[request.userId] }}</span>
               </p>
               <p class="card-text">
-                <strong>Home address:</strong> {{ homeAddresses[request.id] }}
+                <strong>Home address :</strong><span class="ser-name-span"> {{ homeAddresses[request.id] }}</span>
               </p>
               <p class="card-text">
                 <strong>Request Status: </strong>
@@ -47,7 +47,7 @@
               </div>
   
               <p *ngIf="request.serviceStatus !== 'REQUESTED'" class="mt-3 text-center">
-                <em class="text-warning">Action already taken: {{ request.serviceStatus }}</em>
+                <em class="text-success">Action already taken: {{ request.serviceStatus }}</em>
               </p>
               
             </div>

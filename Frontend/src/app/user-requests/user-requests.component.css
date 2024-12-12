@@ -35,6 +35,9 @@
     transition: transform 0.2s;
     /* height: 180px; */
   }
+  .ser-name-span{
+    color: darkgoldenrod;
+}
 
   .card-body:hover {
     transform: scale(1.02);

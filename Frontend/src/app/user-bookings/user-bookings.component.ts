@@ -62,24 +62,25 @@ export class UserBookingsComponent implements OnInit {
   
 
   getAllUserBookings() {
-    
-    this.bookingRequestService.getAllBookingsUser(this.userId).subscribe(res => 
-      {
-        this.bookings = res;
-        this.bookings.forEach(request => {
-          this.bookingId = request.id;
-          this.fetchServiceName(request.workerId);
-          this.fetchWorkerById(request.workerId);
-          this.fetchPaymentStatus(request.id);
-          
-          this.fetchRequestedDateTime(request.serviceId);  // Initialize reviews as null
-
-        // Fetch existing review if available (example: API call)
-        this.fetchReviewForBooking(request.id);
-        });
-      }
-      );
+    this.bookingRequestService.getAllBookingsUser(this.userId).subscribe(res => {
+      this.bookings = res;
+  
+      this.bookings.forEach(booking => {
+        this.bookingId = booking.id;
+  
+        this.fetchServiceName(booking.workerId);
+        this.fetchWorkerById(booking.workerId);
+        this.fetchPaymentStatus(booking.id);
+        
+        // Pass the booking.id for proper mapping
+        this.fetchRequestedDateTime(booking.serviceId, booking.id);
+  
+        // Fetch existing review if available
+        this.fetchReviewForBooking(booking.id);
+      });
+    });
   }
+  
 
   fetchReviewForBooking(bookingId: number) {
     this.bookingRequestService.getReviewByBookingId(bookingId).subscribe({
@@ -101,26 +102,22 @@ export class UserBookingsComponent implements OnInit {
   
 
   
-  fetchRequestedDateTime(serviceId: number) {
+  fetchRequestedDateTime(serviceId: number, bookingId: number) {
     this.bookingRequestService.getServiceRequestById(serviceId).subscribe(res => {
       const dateTimeString = res.dateTime;
   
       if (dateTimeString) {
-        console.log(this.bookingId);
-        
         const dateObj = new Date(dateTimeString);
-        this.bookedForDate = dateObj.toISOString().split('T')[0];
-        this.dateStore[this.bookingId] = this.bookedForDate // Extract date part
-        this.bookedForTime = dateObj.toTimeString().split(' ')[0]; // Extract time part
-        this.timeStore[this.bookingId] = this.bookedForTime;
-      
-        console.log(this.dateStore[this.bookingId] + " chdecekcvyeughijok");
-          
+  
+        // Store the date and time against the specific booking ID
+        this.dateStore[bookingId] = dateObj.toISOString().split('T')[0]; // Extract date
+        this.timeStore[bookingId] = dateObj.toTimeString().split(' ')[0]; // Extract time
       } else {
         console.error('No dateTime received');
       }
     });
   }
+  
 
   fetchServiceName(serviceId: number): void {
     this.bookingRequestService.getUserById(serviceId).subscribe(res => {

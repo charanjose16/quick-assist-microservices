@@ -16,9 +16,9 @@
             <h5 class="card-title">
               Service Name : <span class="text-warning">{{ services[request.workerId] }}</span>
             </h5>
-            <p class="card-text">Worker Name : {{ workers[request.workerId] }}</p>
-            <p class="card-text">Booking For Date : {{ bookedForDate }}</p>
-            <p class="card-text">Booked For Time: {{bookedForTime}}</p>
+            <p class="card-text">Worker Name :  <span class="ser-name-span">{{ workers[request.workerId] }}</span></p>
+            <p class="card-text">Booking For Date : <span class="ser-name-span">{{ dateStore[request.id] }}</span></p>
+            <p class="card-text">Booked For Time:  <span class="ser-name-span">{{timeStore[request.id]}}</span></p>
             
             <p class="card-text">
               Request Status : 

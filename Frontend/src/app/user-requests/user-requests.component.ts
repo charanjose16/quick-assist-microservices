@@ -32,6 +32,8 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
 
   bookedForDate: string ="";
   bookedForTime: string ="";
+  dateStore: { [key: number]: string}={};
+  timeStore: { [key: number]: string}={};
 
   private pollingSubscription!: Subscription;
   userName:string='';
@@ -119,6 +121,8 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
         const dateObj = new Date(dateTimeString);
         this.bookedForDate = dateObj.toISOString().split('T')[0]; // Extract date part
         this.bookedForTime = dateObj.toTimeString().split(' ')[0]; // Extract time part
+        this.dateStore[id] = this.bookedForDate;
+        this.timeStore[id] = this.bookedForTime;
         console.log(this.bookedForDate +" "+this.bookedForTime);
         
       } else {
@@ -244,7 +248,7 @@ export class UserRequestsComponent implements OnInit, OnDestroy {
         this.expertise=res.expertise
 
       // ----------------------------------send SMs
-      // this.sendSms(this.userName,this.phoneNumber,this.expertise,verifyCode)
+      this.sendSms(this.userName,this.phoneNumber,this.expertise,verifyCode)
       console.log(this.phoneNumber);
       
     })

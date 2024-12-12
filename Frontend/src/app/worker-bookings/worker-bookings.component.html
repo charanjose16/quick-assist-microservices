@@ -14,13 +14,13 @@
         <div class="col-md-4 each-req-div" *ngFor="let booking of bookings">
           <div class="card shadow-sm">
             <div class="card-body">
-              <h5 class="card-title">Service Name: <span class="text-warning">{{ services[booking.workerId] }}</span></h5>
-              <p class="card-text">Customer Name: <span class="ser-name-span"> {{ workers[booking.userId] }} </span></p>
-              <p class="card-text"><strong>City:</strong> {{ addresses[booking.userId] }}</p>
-              <p class="card-text"><strong>Home Address:</strong> {{ homeAddresses[booking.serviceId] }}</p>
-              <p class="card-text"><strong>Payment Status:</strong> {{ paymentStatusMap[booking.serviceId] }}</p>
-              <p class="card-text">Booked For Date: <span class="ser-name-span">{{ dateStore[booking.id] }}</span></p>
-<p class="card-text">Booked For Time: <span class="ser-name-span">{{ timeStore[booking.id] }}</span></p>
+              <h5 class="card-title">Service Name : <span class="text-warning"> {{ services[booking.workerId] }}</span></h5>
+              <p class="card-text"><strong>Customer Name : </strong><span class="ser-name-span"> {{ workers[booking.userId] }} </span></p>
+              <p class="card-text"><strong>City :</strong> <span class="ser-name-span"> {{ addresses[booking.userId] }}</span></p>
+              <p class="card-text"><strong>Home Address :</strong> <span class="ser-name-span"> {{ homeAddresses[booking.serviceId] }}</span></p>
+              <p class="card-text"><strong>Payment Status :</strong> {{ paymentStatusMap[booking.serviceId] }}</p>
+              <p class="card-text"><strong>Booked For Date : </strong><span class="ser-name-span"> {{ dateStore[booking.id] }}</span></p>
+<p class="card-text"><strong>Booked For Time : </strong><span class="ser-name-span"> {{ timeStore[booking.id] }}</span></p>
 
               <p class="card-text">
                 Booking Status:

@@ -35,6 +35,9 @@
     transform: scale(1.03);
     box-shadow: 1px 1px 15px rgba(252, 251, 251, 0.829);
   }
+  .ser-name-span{
+    color: darkgoldenrod;
+}
   
   .shadow-sm {
     border-color: rgba(255, 255, 255, 0.315);

@@ -30,6 +30,8 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
   
   bookedForDate: string ="";
   bookedForTime: string ="";
+  dateStore: { [key: number] : string} = {};
+  timeStore: { [key: number] : string} = {};
 
   private pollingSubscription!: Subscription;
 
@@ -73,6 +75,8 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
         const dateObj = new Date(dateTimeString);
         this.bookedForDate = dateObj.toISOString().split('T')[0]; // Extract date part
         this.bookedForTime = dateObj.toTimeString().split(' ')[0]; // Extract time part
+        this.dateStore[id] = this.bookedForDate;
+        this.timeStore[id] = this.bookedForTime;
         console.log(this.bookedForDate +" "+this.bookedForTime);
         
       } else {
@@ -212,7 +216,7 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
   Thank you for understanding,  
   Quick Assist`;
   
-            // this.sendSms(message, this.custPhone);
+            this.sendSms(message, this.custPhone);
           });
         });
       },

@@ -49,12 +49,12 @@ export class WorkerProfileComponent implements OnInit {
     const updatedFields: any = {};
     console.log("updae method calledddddddd");
     
-  
+    if (this.price !== this.originalData.price) updatedFields.price = this.price;
     if (this.name !== this.originalData.name) updatedFields.name = this.name;
     if (this.email !== this.originalData.email) updatedFields.email = this.email;
     if (this.phone !== this.originalData.phoneNumber) updatedFields.phone = this.phone;
     if (this.city !== this.originalData.city) updatedFields.city = this.city;
-    if (this.price !== this.originalData.price) updatedFields.price = this.price;
+    
   
     if (Object.keys(updatedFields).length > 0) {
       console.log("step 1");
@@ -63,7 +63,7 @@ export class WorkerProfileComponent implements OnInit {
         next: () => {
           // console.log("Profile updated yeahhhhhhh");
           
-          // alert('Profile updated successfully!');
+          alert('Profile updated successfully!');
           this.getProfileDetails();
         },
         error: (error) => {
@@ -75,6 +75,7 @@ export class WorkerProfileComponent implements OnInit {
       console.log("No changes detected to update 😢");
       
     }
+
   }
   
 }

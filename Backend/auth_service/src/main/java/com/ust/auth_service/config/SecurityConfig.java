@@ -50,6 +50,8 @@ public class SecurityConfig{
                                 .requestMatchers("/users/**").hasAnyRole("USER")
                                 .requestMatchers("/workers/**").hasRole("WORKER")
                                 .requestMatchers("/serviceRequest/**").hasAnyRole("USER", "WORKER")
+                                .requestMatchers("/booking/**").hasAnyRole("USER", "WORKER")
+                                .requestMatchers("/payment/**").hasAnyRole("USER", "WORKER")
                                 .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

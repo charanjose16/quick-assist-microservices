@@ -27,6 +27,7 @@ export class WorkersDetailsComponent implements OnInit {
   wId: number = 0;
   reviews: string[] = [];
   bookingForm: FormGroup;  // Declare form group
+  minDateTime: string = '';
   
 
   constructor(
@@ -56,6 +57,16 @@ export class WorkersDetailsComponent implements OnInit {
     const userId = Number(sessionStorage.getItem('userId')); // Replace with the actual worker ID
 
     this.fetchReviews(Number(this.workerId));
+
+
+
+    this.bookingForm = this.fb.group({
+      dateTime: ['', Validators.required]
+    });
+
+    // Set the minimum date and time to the current moment
+    const now = new Date();
+    this.minDateTime = now.toISOString().slice(0, 16); 
   }
 
   getWorkerId(userId: number) {
@@ -76,8 +87,15 @@ export class WorkersDetailsComponent implements OnInit {
       paymentId: 0,
       serviceStatus: 'REQUESTED',
       dateTime: this.bookingForm.value.dateTime,
-      homeAddress: this.bookingForm.value.homeAddress, // Correctly bind form data
+      homeAddress: this.bookingForm.value.homeAddress, 
+    // Correctly bind form data
     };
+
+// --------------------------------------send sms
+
+    //  this.sendSms();
+
+
 
     console.log('Booking Request Object:', JSON.stringify(bookingRequestObject, null, 2));
 

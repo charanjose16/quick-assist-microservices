@@ -179,7 +179,7 @@ export class WorkerRequestsComponent implements OnInit, OnDestroy {
   Thank you,  
   Quick Assist`;
   
-            // this.sendSms(message, this.custPhone);
+            this.sendSms(message, this.custPhone);
           });
         });
       },

@@ -89,12 +89,7 @@ The frontend is built using Angular, a popular framework for building single-pag
     - **Worker Service**: Worker-related tables (e.g., worker profiles, service offerings).
     - **Booking Service**: Booking-related tables (e.g., bookings, availability).
 
-### 7. **Deployment Considerations**
-- **Containerization**: 
-  - Consider using Docker to containerize your microservices for easier deployment and scaling.
-  
-- **Orchestration**: 
-  - Use Kubernetes or similar orchestration tools to manage your microservices in production, ensuring high availability and scalability.
+
 
 ### Conclusion
 

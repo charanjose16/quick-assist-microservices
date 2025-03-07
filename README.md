@@ -3,7 +3,7 @@
 
 ## Complete Project Overview
 
-Your project is structured as a microservices architecture, utilizing Spring Boot for the backend and Angular for the frontend. This architecture allows for scalability, maintainability, and separation of concerns. Below is a detailed breakdown of each component.
+This project is structured as a microservices architecture, utilizing Spring Boot for the backend and Angular for the frontend. This architecture allows for scalability, maintainability, and separation of concerns. Below is a detailed breakdown of each component.
 
 ### 1. **Microservices Overview**
 
@@ -98,7 +98,7 @@ The frontend is built using Angular, a popular framework for building single-pag
 
 ### Conclusion
 
-Your project is a well-structured microservices architecture that leverages Spring Boot for the backend and Angular for the frontend. The use of JWT for authentication, Eureka for service discovery, and an API Gateway for routing requests are all best practices in modern application development. 
+This project is a well-structured microservices architecture that leverages Spring Boot for the backend and Angular for the frontend. The use of JWT for authentication, Eureka for service discovery, and an API Gateway for routing requests are all best practices in modern application development. 
 
 This architecture allows for scalability, maintainability, and a clear separation of concerns, making it easier to develop, test, and deploy each service independently.
 
